@@ -7,54 +7,49 @@ using System.IO;
 
 namespace ImageResizer
 {
-    public class Resizer : IDisposable
+    public class Resizer
     {
-        private string dir;
-        private string file;
-        private Bitmap bmp;
-        private IEnumerable<int> widths;
+        private readonly string dir;
+        private readonly string filename;
+        private readonly IEnumerable<int> widths;
 
         public Resizer(string dir, string filename, IEnumerable<int> widths)
         {
             this.dir = dir;
-            bmp = new Bitmap(filename);
-            file = Path.GetFileNameWithoutExtension(filename);
+            this.filename = filename;
             this.widths = widths;
         }
         public void Resize()
         {
-            foreach (var width in widths)
+            using (var bmp = new Bitmap(filename))
             {
-                var aspectRatio = bmp.Size.AspectRatio();
-                var size = new Size(width, (int)(width / aspectRatio));
-                resize(size);
+                foreach (var width in widths)
+                {
+                    var aspectRatio = bmp.Size.AspectRatio();
+                    var size = new Size(width, (int)(width / aspectRatio));
+                    resize(bmp, size);
+                }
             }
-            bmp.Dispose();
         }
 
-        private void resize(Size newSize)
+        private void resize(Image bmp, Size newSize)
         {
+            var file = Path.GetFileNameWithoutExtension(filename);
             var newFileName = file + "-" + (newSize.Width < 1000 ? "0" : "") + newSize.Width + ".jpg";
             var newPath = Path.Combine(dir, newFileName);
             if (File.Exists(newPath)) return;
             Console.WriteLine(newFileName);
 
-            var newImage = new Bitmap(newSize.Width, newSize.Height);
-            var graphics = Graphics.FromImage(newImage);
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphics.DrawImage(bmp, 0, 0, newSize.Width, newSize.Height);
-            graphics.Dispose();
+            using (var newImage = new Bitmap(newSize.Width, newSize.Height))
+            {
+                using (var graphics = Graphics.FromImage(newImage))
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(bmp, 0, 0, newSize.Width, newSize.Height);
+                }
 
-            newImage.Save(newPath, ImageFormat.Jpeg);
-            newImage.Dispose();
-        }
-
-        public void Dispose()
-        {
-            dir = null;
-            file = null;
-            bmp = null;
-            widths = null;
+                newImage.Save(newPath, ImageFormat.Jpeg);
+            }
         }
     }
 }

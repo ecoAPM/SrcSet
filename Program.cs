@@ -28,7 +28,6 @@ namespace ImageResizer
                             {
                                 var r1 = new Resizer(args[1], file, defaultSizes);
                                 r1.Resize();
-                                r1.Dispose();
                             });
                             t.Start();
                         }
