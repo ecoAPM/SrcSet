@@ -11,36 +11,61 @@ namespace ImageResizer
 
         public static void Main(string[] args)
         {
-            switch (args.Length)
+            if (args.Length < 1)
             {
-                case 0:
-                case 1:
-                    Console.WriteLine("Usage: resize filename [size1 [size2 [size3 [...]]]]");
-                    Console.WriteLine("Default sizes: " + string.Join(" ", defaultSizes));
-                    break;
-                case 2:
-                    var attrs = File.GetAttributes(args[0]);
-                    if (attrs.HasFlag(FileAttributes.Directory))
-                    {
-                        foreach (var file in Directory.GetFiles(args[0], "*.jpg"))
-                        {
-                            var t = new Thread(() =>
-                            {
-                                var r1 = new Resizer(args[1], file, defaultSizes);
-                                r1.Resize();
-                            });
-                            t.Start();
-                        }
-                        break;
-                    }
-                    var r2 = new Resizer(args[1], args[0], defaultSizes);
-                    r2.Resize();
-                    break;
-                default:
-                    var r3 = new Resizer(args[1], args[0], args.Skip(2).Select(a => Convert.ToInt32(a)));
-                    r3.Resize();
-                    break;
+
+                Console.WriteLine("Usage: resize filename/directory -s [size1 [size2 [size3 [...]]]] ");
+                Console.WriteLine("-s: search also subdirectories");
+                Console.WriteLine("Default sizes: " + string.Join(" ", defaultSizes));
+                return;
             }
+
+
+            var attrs = File.GetAttributes(args[0]);
+            if (attrs.HasFlag(FileAttributes.Directory))
+            {
+
+                SearchOption searchOption = SearchOption.TopDirectoryOnly;
+                int skip = 1;
+                if (args.Contains("-s"))
+                {
+                    searchOption = SearchOption.AllDirectories;
+                    skip++;
+                }
+
+                var files = Directory.EnumerateFiles(args[0], "*.*", searchOption)
+                .Where(s =>
+                s.EndsWith(".tiff", StringComparison.InvariantCultureIgnoreCase) ||
+                s.EndsWith(".tif", StringComparison.InvariantCultureIgnoreCase) ||
+                s.EndsWith(".bmp", StringComparison.InvariantCultureIgnoreCase) ||
+                s.EndsWith(".png", StringComparison.InvariantCultureIgnoreCase) ||
+                s.EndsWith(".jpg", StringComparison.InvariantCultureIgnoreCase));
+
+
+                var sizes = args.Length == skip ? defaultSizes : args.Skip(skip).Select(a => Convert.ToInt32(a));
+                foreach (var file in files)
+                {
+                    var t = new Thread(() =>
+                    {
+                        Resizer.Resize(file, sizes);
+                    });
+                    t.Start();
+                }
+                return;
+            }
+            if (args.Contains("-s"))
+            {
+                Console.WriteLine("-s option cannot be used with single file, input a directory as first argument to use this option");
+                return;
+            }
+            
+            var filePath = args[0];
+
+            var sizes2 = args.Length == 1 ? defaultSizes : args.Skip(1).Select(a => Convert.ToInt32(a));
+            Resizer.Resize(filePath, sizes2);
+
+
+
         }
     }
 }

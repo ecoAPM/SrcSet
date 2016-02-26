@@ -7,35 +7,55 @@ using System.IO;
 
 namespace ImageResizer
 {
-    public class Resizer
+    public static class Resizer
     {
-        private readonly string dir;
-        private readonly string filename;
-        private readonly IEnumerable<int> widths;
 
-        public Resizer(string dir, string filename, IEnumerable<int> widths)
+        public static void Resize(string filePath, IEnumerable<int> widths)
         {
-            this.dir = dir;
-            this.filename = filename;
-            this.widths = widths;
-        }
-        public void Resize()
-        {
-            using (var bmp = new Bitmap(filename))
+            using (var bmp = new Bitmap(filePath))
             {
                 foreach (var width in widths)
                 {
                     var aspectRatio = bmp.Size.AspectRatio();
                     var size = new Size(width, (int)(width / aspectRatio));
-                    resize(bmp, size);
+                    Resize(filePath, bmp, size);
                 }
             }
         }
 
-        private void resize(Image bmp, Size newSize)
+     
+        private static void  Resize( string filePath, Image bmp, Size newSize)
         {
-            var file = Path.GetFileNameWithoutExtension(filename);
-            var newFileName = file + "-" + (newSize.Width < 1000 ? "0" : "") + newSize.Width + ".jpg";
+            var dir = Path.GetDirectoryName(filePath);
+            var file = Path.GetFileNameWithoutExtension(filePath);
+            var extension = Path.GetExtension(filePath).ToLower();
+            var imgFormat = ImageFormat.Jpeg;
+            switch (extension)
+            {
+                case ".jpg":
+                    break;
+                case ".bmp":
+                    {
+                        imgFormat = ImageFormat.Bmp;
+                        break;
+                    }
+                case ".png":
+                    {
+                        imgFormat = ImageFormat.Png;
+                        break;
+                    }
+                case ".tif":
+                case ".tiff":
+                    {
+                        imgFormat = ImageFormat.Tiff;
+                        break;
+                    }
+                default:
+                    {
+                        throw new BadImageFormatException();
+                    }
+            }
+            var newFileName =string.Format("{0}-{1:D4}{2}", file,(int) newSize.Width , extension);
             var newPath = Path.Combine(dir, newFileName);
             if (File.Exists(newPath)) return;
             Console.WriteLine(newFileName);
@@ -48,7 +68,7 @@ namespace ImageResizer
                     graphics.DrawImage(bmp, 0, 0, newSize.Width, newSize.Height);
                 }
 
-                newImage.Save(newPath, ImageFormat.Jpeg);
+                newImage.Save(newPath, imgFormat);
             }
         }
     }
