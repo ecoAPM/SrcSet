@@ -8,14 +8,18 @@ namespace ImageResizer
     public static class Program
     {
         private static readonly int[] defaultSizes = { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
+        const string RECURSIVE_OPTION= "-r";
+
 
         public static void Main(string[] args)
         {
+
+            
             if (args.Length < 1)
             {
 
                 Console.WriteLine("Usage: resize filename/directory -s [size1 [size2 [size3 [...]]]] ");
-                Console.WriteLine("-s: search also subdirectories");
+                Console.WriteLine(string.Format("{0}: search also subdirectories",RECURSIVE_OPTION));
                 Console.WriteLine("Default sizes: " + string.Join(" ", defaultSizes));
                 return;
             }
@@ -27,7 +31,7 @@ namespace ImageResizer
 
                 SearchOption searchOption = SearchOption.TopDirectoryOnly;
                 int skip = 1;
-                if (args.Contains("-s"))
+                if (args.Contains(RECURSIVE_OPTION))
                 {
                     searchOption = SearchOption.AllDirectories;
                     skip++;
@@ -53,9 +57,9 @@ namespace ImageResizer
                 }
                 return;
             }
-            if (args.Contains("-s"))
+            if (args.Contains(RECURSIVE_OPTION))
             {
-                Console.WriteLine("-s option cannot be used with single file, input a directory as first argument to use this option");
+                Console.WriteLine(RECURSIVE_OPTION+" option cannot be used with single file, input a directory as first argument to use this option");
                 return;
             }
             
