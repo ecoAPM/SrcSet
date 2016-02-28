@@ -9,7 +9,6 @@ namespace ImageResizer
 {
     public static class Resizer
     {
-
         public static void Resize(string filePath, IEnumerable<int> widths)
         {
             using (var bmp = new Bitmap(filePath))
@@ -23,41 +22,19 @@ namespace ImageResizer
             }
         }
 
-     
-        private static void  Resize( string filePath, Image bmp, Size newSize)
+        private static void Resize(string filePath, Image bmp, Size newSize)
         {
             var dir = Path.GetDirectoryName(filePath);
+            if (dir == null)
+                throw new DirectoryNotFoundException();
+
             var file = Path.GetFileNameWithoutExtension(filePath);
-            var extension = Path.GetExtension(filePath).ToLower();
-            var imgFormat = ImageFormat.Jpeg;
-            switch (extension)
-            {
-                case ".jpg":
-                    break;
-                case ".bmp":
-                    {
-                        imgFormat = ImageFormat.Bmp;
-                        break;
-                    }
-                case ".png":
-                    {
-                        imgFormat = ImageFormat.Png;
-                        break;
-                    }
-                case ".tif":
-                case ".tiff":
-                    {
-                        imgFormat = ImageFormat.Tiff;
-                        break;
-                    }
-                default:
-                    {
-                        throw new BadImageFormatException();
-                    }
-            }
-            var newFileName =string.Format("{0}-{1:D4}{2}", file,(int) newSize.Width , extension);
+            var extension = Path.GetExtension(filePath);
+            var newFileName = $"{file}-{newSize.Width:D4}{extension}";
             var newPath = Path.Combine(dir, newFileName);
-            if (File.Exists(newPath)) return;
+            if (File.Exists(newPath))
+                return;
+            var imageFormat = getImageFormat(extension);
             Console.WriteLine(newFileName);
 
             using (var newImage = new Bitmap(newSize.Width, newSize.Height))
@@ -68,7 +45,27 @@ namespace ImageResizer
                     graphics.DrawImage(bmp, 0, 0, newSize.Width, newSize.Height);
                 }
 
-                newImage.Save(newPath, imgFormat);
+                newImage.Save(newPath, imageFormat);
+            }
+        }
+
+        private static ImageFormat getImageFormat(string extension)
+        {
+            switch (extension.ToLower())
+            {
+                case ".jpg":
+                    return ImageFormat.Jpeg;
+                case ".png":
+                    return ImageFormat.Png;
+                case ".bmp":
+                    return ImageFormat.Bmp;
+                case ".gif":
+                    return ImageFormat.Gif;
+                case ".tif":
+                case ".tiff":
+                    return ImageFormat.Tiff;
+                default:
+                    throw new BadImageFormatException();
             }
         }
     }
