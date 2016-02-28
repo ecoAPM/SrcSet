@@ -4,7 +4,7 @@ CLI for creating sets of responsive images for the web
 
 ## Usage
 
-    resize {file or directory} {space delimited widths}
+    resize {file or directory} [-r] [space delimited set of widths]
 
 e.g.
 
@@ -14,7 +14,7 @@ will resize the image to 500 and 1000 pixels wide, with the filenames `IMG_9687-
 
     resize all_images/
 
-will resize all images in the `all_images` directory to each of the default widths
+will resize all images in the `all_images` directory (recursively if `-r` is included) to each of the default widths
 
 ### Default widths
 
@@ -28,3 +28,13 @@ will resize all images in the `all_images` directory to each of the default widt
 - 1600px
 - 1920px
 - 2400px
+
+### File types
+
+Currently supported file types are:
+
+- jpg
+- png
+- bmp
+- gif _(not animated)_
+- tif/tiff
