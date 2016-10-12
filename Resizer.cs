@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
+using ImageProcessorCore;
 
 namespace ImageResizer
 {
@@ -11,18 +9,19 @@ namespace ImageResizer
     {
         public static void Resize(string filePath, IEnumerable<int> widths)
         {
-            using (var bmp = new Bitmap(filePath))
+            foreach (var width in widths)
             {
-                foreach (var width in widths)
+                using (FileStream stream = File.OpenRead(filePath))
                 {
-                    var aspectRatio = bmp.Size.AspectRatio();
+                    Image image = new Image(stream);
+                    var aspectRatio = new Size(image.Width, image.Height).AspectRatio();
                     var size = new Size(width, (int)(width / aspectRatio));
-                    Resize(filePath, bmp, size);
+                    Resize(filePath, image, size);
                 }
             }
         }
 
-        private static void Resize(string filePath, Image bmp, Size newSize)
+        private static void Resize(string filePath, Image image, Size newSize)
         {
             var dir = Path.GetDirectoryName(filePath);
             if (dir == null)
@@ -34,39 +33,12 @@ namespace ImageResizer
             var newPath = Path.Combine(dir, newFileName);
             if (File.Exists(newPath))
                 return;
-            var imageFormat = getImageFormat(extension);
+
             Console.WriteLine(newFileName);
-
-            using (var newImage = new Bitmap(newSize.Width, newSize.Height))
-            {
-                using (var graphics = Graphics.FromImage(newImage))
-                {
-                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    graphics.DrawImage(bmp, 0, 0, newSize.Width, newSize.Height);
-                }
-
-                newImage.Save(newPath, imageFormat);
-            }
-        }
-
-        private static ImageFormat getImageFormat(string extension)
-        {
-            switch (extension.ToLower())
-            {
-                case ".jpeg":
-                case ".jpg":
-                    return ImageFormat.Jpeg;
-                case ".png":
-                    return ImageFormat.Png;
-                case ".bmp":
-                    return ImageFormat.Bmp;
-                case ".gif":
-                    return ImageFormat.Gif;
-                case ".tif":
-                case ".tiff":
-                    return ImageFormat.Tiff;
-                default:
-                    throw new BadImageFormatException();
+            
+            using (FileStream output = File.OpenWrite(newPath))
+            {                
+                image.Resize(newSize.Width, newSize.Height).Save(output);
             }
         }
     }
