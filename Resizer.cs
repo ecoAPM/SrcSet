@@ -53,6 +53,7 @@ namespace ImageResizer
         {
             switch (extension.ToLower())
             {
+                case ".jpeg":
                 case ".jpg":
                     return ImageFormat.Jpeg;
                 case ".png":
