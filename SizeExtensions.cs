@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using ImageProcessorCore;
 
 namespace ImageResizer
 {
