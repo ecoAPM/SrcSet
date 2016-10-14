@@ -9,11 +9,11 @@ namespace ImageResizer
     {
         public static void Resize(string filePath, IEnumerable<int> widths)
         {
-            foreach (var width in widths)
+            using (var stream = File.OpenRead(filePath))
             {
-                using (FileStream stream = File.OpenRead(filePath))
+                foreach (var width in widths)
                 {
-                    Image image = new Image(stream);
+                    var image = new Image(stream);
                     var aspectRatio = new Size(image.Width, image.Height).AspectRatio();
                     var size = new Size(width, (int)(width / aspectRatio));
                     Resize(filePath, image, size);
@@ -35,10 +35,13 @@ namespace ImageResizer
                 return;
 
             Console.WriteLine(newFileName);
-            
-            using (FileStream output = File.OpenWrite(newPath))
-            {                
-                image.Resize(newSize.Width, newSize.Height).Save(output);
+
+            var resized = image.Resize(newSize.Width, newSize.Height);
+
+            using (var output = File.OpenWrite(newPath))
+            {
+                resized.CurrentImageFormat.Encoder.Quality = 256;
+                resized.Save(output);
             }
         }
     }
