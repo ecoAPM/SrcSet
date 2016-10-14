@@ -33,8 +33,7 @@ will resize all images in the `all_images` directory (recursively if `-r` is inc
 
 Currently supported file types are:
 
-- jpg
+- jpg/jpeg
 - png
 - bmp
 - gif _(not animated)_
-- tif/tiff
