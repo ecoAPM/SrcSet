@@ -3,3 +3,4 @@ obj
 Properties
 *.user
 .vs
+*.lock.json

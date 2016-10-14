@@ -2,22 +2,18 @@
   "buildOptions": {
     "emitEntryPoint": true
   },
-  "dependencies": {    
+  "dependencies": {
     "ImageProcessorCore": "1.0.0-*"
   },
   "frameworks": {
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.1"
+          "version": "1.0.1",
+          "type": "platform"
         }
       }
     }
-  },
-  "runtimes": {
-    "win7-x64": {},
-    "osx.10.10-x64": {},
-    "ubuntu.14.04-x64": {}
   },
   "version": "1.0.0-*"
 }
