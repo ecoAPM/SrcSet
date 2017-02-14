@@ -37,3 +37,14 @@ Currently supported file types are:
 - png
 - bmp
 - gif _(not animated)_
+
+
+## Contributing
+
+To build in VS2015, make sure you have:
+- Update 3
+- .NET Core 1.1 SDK
+- .NET Core Tools Preview 2 for VS
+
+See here for downloads:  
+https://www.microsoft.com/net/core#windowsvs2015
