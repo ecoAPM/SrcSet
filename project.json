@@ -1,10 +1,13 @@
 {
   "buildOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "compile": {
+        "exclude": "tests"
+    }
   },
-  "dependencies": {
-    "ImageProcessorCore": "1.0.0-*"
-  },
+    "dependencies": {
+        "ImageProcessorCore": "1.0.0-*"
+    },
   "frameworks": {
     "netcoreapp1.0": {
       "dependencies": {
