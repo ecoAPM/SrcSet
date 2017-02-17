@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ImageResizer", "ImageResizer.xproj", "{7C4F097E-555B-475B-BFBA-13D67D62DAB6}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ImageResizerTests", "tests\ImageResizerTests.xproj", "{B40678DD-E552-4ADE-9A74-3DE00764D556}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C07E512E-80B1-4D74-8C70-E1B98236A24A}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{7C4F097E-555B-475B-BFBA-13D67D62DAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C4F097E-555B-475B-BFBA-13D67D62DAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C4F097E-555B-475B-BFBA-13D67D62DAB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B40678DD-E552-4ADE-9A74-3DE00764D556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B40678DD-E552-4ADE-9A74-3DE00764D556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B40678DD-E552-4ADE-9A74-3DE00764D556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B40678DD-E552-4ADE-9A74-3DE00764D556}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
