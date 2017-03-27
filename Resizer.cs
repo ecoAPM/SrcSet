@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ImageProcessorCore;
+using ImageSharp;
 
 namespace ImageResizer
 {
@@ -11,10 +11,10 @@ namespace ImageResizer
         {
             using (var stream = File.OpenRead(filePath))
             {
+                var image = Image.Load(stream);
+                var aspectRatio = new Size(image.Width, image.Height).AspectRatio();
                 foreach (var width in widths)
                 {
-                    var image = new Image(stream);
-                    var aspectRatio = new Size(image.Width, image.Height).AspectRatio();
                     var size = new Size(width, (int)(width / aspectRatio));
                     Resize(filePath, image, size);
                 }
@@ -40,7 +40,7 @@ namespace ImageResizer
 
             using (var output = File.OpenWrite(newPath))
             {
-                resized.CurrentImageFormat.Encoder.Quality = 256;
+                resized.MetaData.Quality = 255;
                 resized.Save(output);
             }
         }
