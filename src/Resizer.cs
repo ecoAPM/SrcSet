@@ -34,7 +34,7 @@ namespace ImageResizer
             if (File.Exists(newPath))
                 return;
 
-            Console.WriteLine(newFileName);
+            Console.WriteLine(newPath);
 
             var resized = image.Resize(newSize.Width, newSize.Height);
 
