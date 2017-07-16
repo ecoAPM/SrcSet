@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ImageSharp" Version="1.0.0-alpha5-00035" /> 
+    <PackageReference Include="ImageSharp" Version="1.0.0-alpha5-00035" />
+    <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" /> 
   </ItemGroup>
 </Project>
