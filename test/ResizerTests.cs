@@ -17,7 +17,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(200, image.Height);
+                Assert.Equal(133, image.Height);
                 Assert.Equal(200, image.Width);
             }
 
@@ -25,7 +25,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(300, image.Height);
+                Assert.Equal(200, image.Height);
                 Assert.Equal(300, image.Width);
             }
 
@@ -42,7 +42,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(200, image.Height);
+                Assert.Equal(133, image.Height);
                 Assert.Equal(200, image.Width);
             }
 
@@ -50,7 +50,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(300, image.Height);
+                Assert.Equal(200, image.Height);
                 Assert.Equal(300, image.Width);
             }
 
@@ -67,7 +67,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(200, image.Height);
+                Assert.Equal(133, image.Height);
                 Assert.Equal(200, image.Width);
             }
 
@@ -75,7 +75,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(300, image.Height);
+                Assert.Equal(200, image.Height);
                 Assert.Equal(300, image.Width);
             }
 
@@ -92,7 +92,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(200, image.Height);
+                Assert.Equal(133, image.Height);
                 Assert.Equal(200, image.Width);
             }
 
@@ -100,7 +100,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(300, image.Height);
+                Assert.Equal(200, image.Height);
                 Assert.Equal(300, image.Width);
             }
 
@@ -117,7 +117,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(200, image.Height);
+                Assert.Equal(133, image.Height);
                 Assert.Equal(200, image.Width);
             }
 
@@ -125,7 +125,7 @@ namespace ImageResizer.Tests
             {
                 var image = Image.Load(stream);
 
-                Assert.Equal(300, image.Height);
+                Assert.Equal(200, image.Height);
                 Assert.Equal(300, image.Width);
             }
 
@@ -136,9 +136,9 @@ namespace ImageResizer.Tests
         [Fact]
         public void ThrowsExceptionWithUnsupportedFileType()
         {
-            var ex = Assert.Throws<Exception>(() => Resizer.Resize("Images/test.txt", new[] { 200, 300 }));
+            var ex = Assert.Throws<NotSupportedException>(() => Resizer.Resize("Images/test.txt", new[] { 200, 300 }));
 
-            Assert.Equal("Unsupported file type (.txt) at Images/test.txt.  The only supported file types are .jpg/jpeg, .png, .bmp, and .gif (not animated).", ex.Message);
+            Assert.Equal("Image cannot be loaded. Available decoders:\r\n - GIF : GifDecoder\r\n - BMP : BmpDecoder\r\n - PNG : PngDecoder\r\n - JPEG : JpegDecoder\r\n", ex.Message);
         }
 
 

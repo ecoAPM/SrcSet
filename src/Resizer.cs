@@ -37,10 +37,10 @@ namespace ImageResizer
                         _encoder = new BmpEncoder();
                         break;
                     case ".png":
+                    case ".tif":
+                    case ".tiff":
                         _encoder = new PngEncoder();
                         break;
-                    default:
-                        throw new Exception($"Unsupported file type ({filetype}) at {filePath}.  The only supported file types are .jpg/jpeg, .png, .bmp, and .gif (not animated).");
                 }
 
                 var aspectRatio = new Size(_image.Width, _image.Height).AspectRatio();
