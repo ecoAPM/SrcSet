@@ -37,8 +37,6 @@ namespace ImageResizer
                         _encoder = new BmpEncoder();
                         break;
                     case ".png":
-                    case ".tif":
-                    case ".tiff":
                         _encoder = new PngEncoder();
                         break;
                 }
