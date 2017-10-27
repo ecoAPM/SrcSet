@@ -7,11 +7,18 @@ namespace ImageResizer.Tests
 {
     public class ResizerTests
     {
+        private Resizer _resizer;
+
+        public ResizerTests()
+        {
+            _resizer = new Resizer();
+        }
+
 
         [Fact]
         public void AbleToResizePngFiles()
         {
-            Resizer.Resize("Images/test.png", new[] {200, 300});
+            _resizer.Resize("Images/test.png", new[] {200, 300});
 
             using (var stream = File.OpenRead("Images/test-0200.png"))
             {
@@ -36,7 +43,7 @@ namespace ImageResizer.Tests
         [Fact]
         public void AbleToResizeJpgFiles()
         {
-            Resizer.Resize("Images/test.jpg", new[] { 200, 300 });
+            _resizer.Resize("Images/test.jpg", new[] { 200, 300 });
 
             using (var stream = File.OpenRead("Images/test-0200.jpg"))
             {
@@ -61,7 +68,7 @@ namespace ImageResizer.Tests
         [Fact]
         public void AbleToResizeJpegFiles()
         {
-            Resizer.Resize("Images/test.jpeg", new[] { 200, 300 });
+            _resizer.Resize("Images/test.jpeg", new[] { 200, 300 });
 
             using (var stream = File.OpenRead("Images/test-0200.jpeg"))
             {
@@ -86,7 +93,7 @@ namespace ImageResizer.Tests
         [Fact]
         public void AbleToResizeGifFiles()
         {
-            Resizer.Resize("Images/test.gif", new[] { 200, 300 });
+            _resizer.Resize("Images/test.gif", new[] { 200, 300 });
 
             using (var stream = File.OpenRead("Images/test-0200.gif"))
             {
@@ -111,7 +118,7 @@ namespace ImageResizer.Tests
         [Fact]
         public void AbleToResizeBmpFiles()
         {
-            Resizer.Resize("Images/test.bmp", new[] { 200, 300 });
+            _resizer.Resize("Images/test.bmp", new[] { 200, 300 });
 
             using (var stream = File.OpenRead("Images/test-0200.bmp"))
             {
@@ -136,9 +143,9 @@ namespace ImageResizer.Tests
         [Fact]
         public void ThrowsExceptionWithUnsupportedFileType()
         {
-            var ex = Assert.Throws<NotSupportedException>(() => Resizer.Resize("Images/test.txt", new[] { 200, 300 }));
+            var ex = Assert.Throws<NotSupportedException>(() => _resizer.Resize("Images/test.txt", new[] { 200, 300 }));
 
-            Assert.Equal("Image cannot be loaded. Available decoders:\r\n - GIF : GifDecoder\r\n - BMP : BmpDecoder\r\n - PNG : PngDecoder\r\n - JPEG : JpegDecoder\r\n", ex.Message);
+            Assert.True(ex.Message.Contains("Image cannot be loaded. Available decoders:"));
         }
 
 

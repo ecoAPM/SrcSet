@@ -11,12 +11,12 @@ using SixLabors.Primitives;
 
 namespace ImageResizer
 {
-    public static class Resizer
+    public class Resizer
     {
-        private static Image<Rgba32> _image;
-        private static IImageEncoder _encoder;
+        private Image<Rgba32> _image;
+        private IImageEncoder _encoder;
 
-        public static void Resize(string filePath, IEnumerable<int> widths)
+        public void Resize(string filePath, IEnumerable<int> widths)
         {
             using (var stream = File.OpenRead(filePath))
             {
@@ -52,7 +52,7 @@ namespace ImageResizer
             }
         }
 
-        private static void Resize(string filePath, Size newSize)
+        private void Resize(string filePath, Size newSize)
         {
             var dir = Path.GetDirectoryName(filePath);
             if (dir == null)
