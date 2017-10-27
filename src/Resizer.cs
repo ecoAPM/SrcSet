@@ -1,27 +1,58 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using ImageSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Bmp;
+using SixLabors.ImageSharp.Formats.Gif;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Formats.Png;
+using SixLabors.Primitives;
 
 namespace ImageResizer
 {
     public static class Resizer
     {
+        private static Image<Rgba32> _image;
+        private static IImageEncoder _encoder;
+
         public static void Resize(string filePath, IEnumerable<int> widths)
         {
             using (var stream = File.OpenRead(filePath))
             {
-                var image = Image.Load(stream);
-                var aspectRatio = new Size(image.Width, image.Height).AspectRatio();
+                _image = Image.Load(stream);
+
+                var filetype = Path.GetExtension(filePath);
+
+                switch (filetype)
+                {
+                    case ".jpg":
+                    case ".jpeg":
+                        _encoder = new JpegEncoder{Quality = 255};
+                        break;
+                    case ".gif":
+                        _encoder = new GifEncoder();
+                        break;
+                    case ".bmp":
+                        _encoder = new BmpEncoder();
+                        break;
+                    case ".png":
+                        _encoder = new PngEncoder();
+                        break;
+                    default:
+                        throw new Exception($"Unsupported file type ({filetype}) at {filePath}.  The only supported file types are .jpg/jpeg, .png, .bmp, and .gif (not animated).");
+                }
+
+                var aspectRatio = new Size(_image.Width, _image.Height).AspectRatio();
                 foreach (var width in widths)
                 {
                     var size = new Size(width, (int)(width / aspectRatio));
-                    Resize(filePath, image, size);
+                    Resize(filePath, size);
                 }
             }
         }
 
-        private static void Resize(string filePath, Image image, Size newSize)
+        private static void Resize(string filePath, Size newSize)
         {
             var dir = Path.GetDirectoryName(filePath);
             if (dir == null)
@@ -36,12 +67,12 @@ namespace ImageResizer
 
             Console.WriteLine(newFileName);
 
-            var resized = image.Resize(newSize.Width, newSize.Height);
+            _image.Mutate(x => x.Resize(newSize.Width, newSize.Height));
+
 
             using (var output = File.OpenWrite(newPath))
             {
-                resized.MetaData.Quality = 255;
-                resized.Save(output);
+                _image.Save(output, _encoder);
             }
         }
     }
