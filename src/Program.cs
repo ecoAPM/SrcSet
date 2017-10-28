@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,15 +38,17 @@ namespace ImageResizer
             }
 
             var searchOption = resizeRecursively ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-            var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff" };
+            var validExtensions = new[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
             var files = resizeDirectory
                 ? Directory.EnumerateFiles(fileOrDirectoryArg, "*.*", searchOption).Where(f => validExtensions.Contains(Path.GetExtension(f).ToLower()))
                 : new[] { fileOrDirectoryArg };
 
+            var resizer = new Resizer();
+
             var sizes = getSizes(args);
             foreach (var file in files)
             {
-                var t = new Thread(() => Resizer.Resize(file, sizes));
+                var t = new Thread(() => resizer.Resize(file, sizes));
                 t.Start();
             }
         }
