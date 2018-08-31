@@ -7,6 +7,8 @@ namespace ImageResizer
 {
     public static class Resizer
     {
+        // The following declaration opens a image file at filepath t. And calls the private method
+        // "Resize" to save the file.
         public static void Resize(string filePath, IEnumerable<int> widths)
         {
             using (var stream = File.OpenRead(filePath))
@@ -16,11 +18,12 @@ namespace ImageResizer
                 foreach (var width in widths)
                 {
                     var size = new Size(width, (int)(width / aspectRatio));
-                    Resize(filePath, image, size);
+                    Resize(filePath, image , size);
                 }
             }
         }
-
+        //The following declaration takes the image file from memory ,sets the image dimensions specified
+        // ,appends demensions to the file name resizes image to specified height and width and saves file in current working dir
         private static void Resize(string filePath, Image image, Size newSize)
         {
             var dir = Path.GetDirectoryName(filePath);
