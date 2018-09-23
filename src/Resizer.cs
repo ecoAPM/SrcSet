@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ImageSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.Primitives;
 
 namespace ImageResizer
 {
@@ -9,9 +12,8 @@ namespace ImageResizer
     {
         public static void Resize(string filePath, IEnumerable<int> widths)
         {
-            using (var stream = File.OpenRead(filePath))
+            using (var image = Image.Load(filePath))
             {
-                var image = Image.Load(stream);
                 var aspectRatio = new Size(image.Width, image.Height).AspectRatio();
                 foreach (var width in widths)
                 {
@@ -21,7 +23,7 @@ namespace ImageResizer
             }
         }
 
-        private static void Resize(string filePath, Image image, Size newSize)
+        private static void Resize(string filePath, Image<Rgba32> image, Size newSize)
         {
             var dir = Path.GetDirectoryName(filePath);
             if (dir == null)
@@ -36,13 +38,8 @@ namespace ImageResizer
 
             Console.WriteLine(newFileName);
 
-            var resized = image.Resize(newSize.Width, newSize.Height);
-
-            using (var output = File.OpenWrite(newPath))
-            {
-                resized.MetaData.Quality = 255;
-                resized.Save(output);
-            }
+            image.Mutate(i => i.Resize(newSize.Width, newSize.Height));
+            image.Save(newPath);
         }
     }
 }

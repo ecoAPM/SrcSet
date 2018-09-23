@@ -1,4 +1,4 @@
-﻿using ImageSharp;
+﻿using SixLabors.Primitives;
 using Xunit;
 
 namespace ImageResizer.Tests
