@@ -1,4 +1,4 @@
-﻿using SixLabors.Primitives;
+﻿using System.Drawing;
 using Xunit;
 
 namespace ImageResizer.Tests
@@ -6,7 +6,20 @@ namespace ImageResizer.Tests
     public class SizeExtensionsTests
     {
         [Fact]
-        public void AspectRatioIsCorrect()
+        public void CanResizeImage()
+        {
+            //arrange
+            var size = new Size(6, 4);
+
+            //act
+            var newSize = size.Resize(3);
+
+            //assert
+            Assert.Equal(new Size(3, 2), newSize);
+        }
+
+        [Fact]
+        public void CanCalculateLandscapeAspectRatio()
         {
             //arrange
             var size = new Size(3, 2);
@@ -16,6 +29,19 @@ namespace ImageResizer.Tests
 
             //assert
             Assert.Equal(1.5, aspectRatio);
+        }
+
+        [Fact]
+        public void CanCalculatePortraitAspectRatio()
+        {
+            //arrange
+            var size = new Size(3, 4);
+
+            //act
+            var aspectRatio = size.AspectRatio();
+
+            //assert
+            Assert.Equal(0.75, aspectRatio);
         }
     }
 }

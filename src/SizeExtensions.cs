@@ -1,12 +1,13 @@
-﻿using SixLabors.Primitives;
+﻿using System.Drawing;
 
 namespace ImageResizer
 {
     public static class SizeExtensions
     {
+        public static Size Resize(this Size size, ushort width)
+            => new Size(width, (ushort)(width / size.AspectRatio()));
+
         public static double AspectRatio(this Size size)
-        {
-            return (double)size.Width / size.Height;
-        }
+            => (double)size.Width / size.Height;
     }
 }
