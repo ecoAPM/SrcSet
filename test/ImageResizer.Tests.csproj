@@ -11,6 +11,9 @@
     <ProjectReference Include="..\src\ImageResizer.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="test-0001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="test.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

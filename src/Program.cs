@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp;
 
 namespace ImageResizer
 {
@@ -32,9 +33,10 @@ namespace ImageResizer
                 return;
             }
 
+            var manager = new SrcSetManager(Image.Load);
             var sizes = args.GetSizes();
             var resizeTasks = fileOrDirectoryArg.GetFiles(resizeRecursively, resizeDirectory)
-                .Select(async file => await Task.Run(() => Resizer.SaveSrcSet(file, sizes)))
+                .Select(async file => await Task.Run(() => manager.SaveSrcSet(file, sizes)))
                 .ToArray();
             await Task.WhenAll(resizeTasks);
         }

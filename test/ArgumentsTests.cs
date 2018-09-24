@@ -9,7 +9,7 @@ namespace ImageResizer.Tests
         public void CanGetDefaultSizesWhenRecursive()
         {
             //arrange
-            var args = new[] {"path", "-r"};
+            var args = new[] { "path", "-r" };
 
             //act
             var sizes = args.GetSizes();
@@ -22,7 +22,7 @@ namespace ImageResizer.Tests
         public void CanGetDefaultCustomSizesWhenNotRecursive()
         {
             //arrange
-            var args = new[] {"path"};
+            var args = new[] { "path" };
 
             //act
             var sizes = args.GetSizes();
@@ -35,7 +35,7 @@ namespace ImageResizer.Tests
         public void CanGetCustomSizesWhenRecursive()
         {
             //arrange
-            var args = new[] {"path", "-r", "123", "234"};
+            var args = new[] { "path", "-r", "123", "234" };
 
             //act
             var sizes = args.GetSizes();
@@ -48,7 +48,7 @@ namespace ImageResizer.Tests
         public void CanGetCustomSizesWhenNotRecursive()
         {
             //arrange
-            var args = new[] {"path", "123", "234"};
+            var args = new[] { "path", "123", "234" };
 
             //act
             var sizes = args.GetSizes();
@@ -81,6 +81,32 @@ namespace ImageResizer.Tests
 
             //assert
             Assert.False(isDir);
+        }
+
+        [Fact]
+        public void CanGetFilesForSingleFile()
+        {
+            //arrange
+            var arg = "test.jpg";
+
+            //act
+            var files = arg.GetFiles(false, false);
+
+            //assert
+            Assert.Equal(new[] { "test.jpg" }, files);
+        }
+
+        [Fact]
+        public void CanGetFilesForDirectory()
+        {
+            //arrange
+            var arg = Directory.GetCurrentDirectory();
+
+            //act
+            var files = arg.GetFiles(true, true);
+
+            //assert
+            Assert.Contains(Path.Join(arg, "test.png"), files);
         }
     }
 }
