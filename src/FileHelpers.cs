@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 
-namespace ImageResizer
+namespace SrcSet
 {
     public static class FileHelpers
     {

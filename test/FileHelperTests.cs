@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Xunit;
 
-namespace ImageResizer.Tests
+namespace SrcSet.Tests
 {
     public class FileHelperTests
     {

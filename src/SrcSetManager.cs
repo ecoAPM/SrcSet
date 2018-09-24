@@ -5,7 +5,7 @@ using System.Linq;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace ImageResizer
+namespace SrcSet
 {
     public class SrcSetManager
     {

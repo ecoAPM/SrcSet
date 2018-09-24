@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace ImageResizer
+namespace SrcSet
 {
     public static class SizeExtensions
     {

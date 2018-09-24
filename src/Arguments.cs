@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ImageResizer
+namespace SrcSet
 {
     public static class Arguments
     {

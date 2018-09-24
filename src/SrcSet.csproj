@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>srcset</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackAsTool>true</PackAsTool>
+    <PackageId>srcset</PackageId>
+    <LangVersion>7.1</LangVersion>
+    <Authors>Steve Desmond</Authors>
+    <Company>Steve Desmond Software Development</Company>
+    <Product>dotnet-srcset</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Generate a set of responsive images</Description>
+    <Copyright>Steve Desmond</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/stevedesmond-ca/dotnet-srcset/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/stevedesmond-ca/dotnet-srcset</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stevedesmond-ca/dotnet-srcset</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" /> 
+  </ItemGroup>
+</Project>

@@ -8,7 +8,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\ImageResizer.csproj" />
+    <ProjectReference Include="..\src\SrcSet.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="test-0001.png">

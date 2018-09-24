@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Xunit;
 
-namespace ImageResizer.Tests
+namespace SrcSet.Tests
 {
     public class ArgumentsTests
     {
