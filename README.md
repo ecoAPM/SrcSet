@@ -1,18 +1,22 @@
-# ImageResizer
+# dotnet-srcset
 
 CLI for creating sets of responsive images for the web
 
+## Installation
+
+    dotnet tool install -g srcset
+
 ## Usage
 
-    resize {file or directory} [-r] [space delimited set of widths]
+    srcset {file or directory} [-r] [space delimited set of widths]
 
 e.g.
 
-    resize IMG_9687.jpg 500 1000
+    srcset IMG_9687.jpg 500 1000
 
 will resize the image to 500 and 1000 pixels wide, with the filenames `IMG_9687-0500.jpg` and `IMG_9687-1000.jpg`
 
-    resize all_images/
+    srcset all_images/
 
 will resize all images in the `all_images` directory (recursively if `-r` is included) to each of the default widths
 
@@ -31,20 +35,12 @@ will resize all images in the `all_images` directory (recursively if `-r` is inc
 
 ### File types
 
-Currently supported file types are:
+`dotnet-srcset` uses [ImageSharp](https://imagesharp.net) under the hood, and therefore should theoretically support all file types that ImageSharp supports by entering the filename as a parameter, however when entering a directory as a parameter, file types are limited to:
 
 - jpg/jpeg
 - png
 - bmp
-- gif _(not animated)_
+- gif
+- tif/tiff
 
-
-## Contributing
-
-To build in VS2015, make sure you have:
-- Update 3
-- .NET Core 1.1 SDK
-- .NET Core Tools Preview 2 for VS
-
-See here for downloads:  
-https://www.microsoft.com/net/core#windowsvs2015
+Feel free to contribute an update that adds more file types to `Arguments.ValidExtensions`!
