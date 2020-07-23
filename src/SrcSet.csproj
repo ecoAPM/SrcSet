@@ -14,9 +14,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Generate a set of responsive images</Description>
     <Copyright>ecoAPM LLC</Copyright>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/ecoAPM/dotnet-srcset/main/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ecoAPM/dotnet-srcset</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ecoAPM/dotnet-srcset</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

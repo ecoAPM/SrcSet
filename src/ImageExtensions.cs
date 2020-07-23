@@ -15,7 +15,7 @@ namespace SrcSet
             if (File.Exists(newPath))
                 return null;
 
-            using (var resized = image.Clone())
+            using (var resized = image.CloneAs<Rgba32>())
             {
                 resized.Mutate(i => i.Resize(newSize.Width, newSize.Height));
                 resized.Save(newPath);

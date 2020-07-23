@@ -4,3 +4,4 @@ Properties
 *.user
 .vs
 *.lock.json
+.idea
