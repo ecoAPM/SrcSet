@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -17,7 +16,7 @@ namespace SrcSet.Tests
             var image = new Image<Rgba32>(1, 1);
 
             //act
-            var newName = image.SaveResizedImage(path, new Size(2, 2));
+            var newName = image.SaveResizedImage(path, new System.Drawing.Size(2, 2));
 
             //assert
             Assert.Equal("test-0002.png", newName);
@@ -31,7 +30,7 @@ namespace SrcSet.Tests
             var image = new Image<Rgba32>(1, 1);
 
             //act
-            var newName = image.SaveResizedImage(path, new Size(1, 1));
+            var newName = image.SaveResizedImage(path, new System.Drawing.Size(1, 1));
 
             //assert
             Assert.Null(newName);

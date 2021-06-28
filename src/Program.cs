@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace SrcSet
 {
@@ -33,11 +34,10 @@ namespace SrcSet
                 return 1;
             }
 
-            var manager = new SrcSetManager(Image.Load);
+            var manager = new SrcSetManager(Image.Load, Console.WriteLine);
             var sizes = args.GetSizes();
             var resizeTasks = fileOrDirectoryArg.GetFiles(resizeRecursively, resizeDirectory)
-                .Select(async file => await Task.Run(() => manager.SaveSrcSet(file, sizes)))
-                .ToArray();
+                .Select(async file => await manager.SaveSrcSet(file, sizes));
             await Task.WhenAll(resizeTasks);
             return 0;
         }
