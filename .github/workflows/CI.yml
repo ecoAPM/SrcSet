@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  Build:
+    runs-on: ubuntu-20.04
+    env:
+      TZ: America/New_York
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.411
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
