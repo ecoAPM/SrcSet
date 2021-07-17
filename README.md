@@ -1,5 +1,8 @@
 # dotnet-srcset
 
+[![NuGet version](https://badge.fury.io/nu/srcset.svg)](https://www.nuget.org/packages/srcset/)
+[![Build Status](https://github.com/ecoAPM/dotnet-srcset/workflows/CI/badge.svg)](https://github.com/ecoAPM/dotnet-srcset/actions)
+
 CLI for creating sets of responsive images for the web
 
 ## Installation
