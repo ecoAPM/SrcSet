@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-	public class SizeExtensionsTests
+	public sealed class SizeExtensionsTests
 	{
 		[Fact]
 		public void CanResizeImage()

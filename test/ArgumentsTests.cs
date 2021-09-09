@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-	public class ArgumentsTests
+	public sealed class ArgumentsTests
 	{
 		[Fact]
 		public void CanGetDefaultSizesWhenRecursive()

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-	public class ProgramTests
+	public sealed class ProgramTests
 	{
 		[Fact]
 		public async Task CanResizeImage()

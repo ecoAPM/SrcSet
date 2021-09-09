@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-	public class FileHelperTests
+	public sealed class FileHelperTests
 	{
 		[Fact]
 		public void CanGetFilenameWithWidth()

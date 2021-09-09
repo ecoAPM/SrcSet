@@ -8,7 +8,7 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace SrcSet
 {
-	public class SrcSetManager
+	public sealed class SrcSetManager
 	{
 		private readonly Func<byte[], Image<Rgba32>> _loadImage;
 		private readonly Action<string> _log;

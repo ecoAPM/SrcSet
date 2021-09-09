@@ -6,7 +6,7 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-	public class ImageExtensionTests : IDisposable
+	public sealed class ImageExtensionTests : IDisposable
 	{
 		[Fact]
 		public void CanSaveResizedImage()
