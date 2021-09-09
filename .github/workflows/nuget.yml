@@ -20,7 +20,7 @@ jobs:
       run: dotnet test -c Release
 
     - name: Package
-      run: dotnet pack -c Release
+      run: dotnet pack -c Release -p:ContinuousIntegrationBuild=true
 
     - name: Publish
       run: dotnet nuget push src/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg src/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').symbols.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
