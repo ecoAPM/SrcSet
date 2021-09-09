@@ -1,18 +1,22 @@
-# dotnet-srcset
+# SrcSet
 
-CLI for creating sets of responsive images for the web
+A CLI to create sets of responsive images for the web
 
 [![NuGet version](https://badge.fury.io/nu/srcset.svg)](https://www.nuget.org/packages/srcset/)
-[![Build Status](https://github.com/ecoAPM/dotnet-srcset/workflows/CI/badge.svg)](https://github.com/ecoAPM/dotnet-srcset/actions)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=coverage)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
+[![Build Status](https://github.com/ecoAPM/SrcSet/workflows/CI/badge.svg)](https://github.com/ecoAPM/SrcSet/actions)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_SrcSet&metric=coverage)](https://sonarcloud.io/dashboard?id=ecoAPM_SrcSet)
 
-[![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
-[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
-[![Security](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=security_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
+[![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_SrcSet&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_SrcSet)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_SrcSet&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_SrcSet)
+[![Security](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_SrcSet&metric=security_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_SrcSet)
+
+## Requirements
+
+- .NET SDK 5.0
 
 ## Installation
 
-    dotnet tool install -g srcset
+    dotnet tool install -g SrcSet
 
 ## Usage
 
@@ -43,7 +47,7 @@ will resize all images in the `all_images` directory (recursively if `-r` is inc
 
 ### File types
 
-`dotnet-srcset` uses [ImageSharp](https://imagesharp.net) under the hood, and therefore should theoretically support all file types that ImageSharp supports by entering the filename as a parameter, however when entering a directory as a parameter, file types are limited to:
+`SrcSet` uses [ImageSharp](https://imagesharp.net) under the hood, and therefore should theoretically support all file types that ImageSharp supports by entering the filename as a parameter, however when entering a directory as a parameter, file types are limited to:
 
 - jpg/jpeg
 - png
@@ -52,3 +56,7 @@ will resize all images in the `all_images` directory (recursively if `-r` is inc
 - tif/tiff
 
 Feel free to contribute an update that adds more file types to `Arguments.ValidExtensions`!
+
+## Contributing
+
+Please be sure to read and follow ecoAPM's [Contribution Guidelines](CONTRIBUTING.md) when submitting issues or pull requests.

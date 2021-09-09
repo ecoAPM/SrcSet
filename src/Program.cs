@@ -12,7 +12,7 @@ namespace SrcSet
 		{
 			if (args.Length < 1)
 			{
-				Console.WriteLine("Usage: resize {filename or directory} [-r] [size1 [size2 [size3 [...]]]] ");
+				Console.WriteLine("Usage: srcset {filename or directory} [-r] [size1 [size2 [size3 [...]]]] ");
 				Console.WriteLine("{0}: recurse subdirectories", Arguments.RecursiveFlag);
 				Console.WriteLine("Default sizes: " + string.Join(" ", Arguments.DefaultSizes));
 				return 1;

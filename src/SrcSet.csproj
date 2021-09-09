@@ -5,15 +5,16 @@
 		<AssemblyName>srcset</AssemblyName>
 		<OutputType>Exe</OutputType>
 		<PackAsTool>true</PackAsTool>
+		<PackageId>SrcSet</PackageId>
 		<Version>3.0.0</Version>
 		<Authors>Steve Desmond</Authors>
 		<Company>ecoAPM LLC</Company>
-		<Product>dotnet-srcset</Product>
-		<Description>Generate a set of responsive images</Description>
+		<Product>srcset</Product>
+		<Description>A CLI to create sets of responsive images for the web</Description>
 		<Copyright>ecoAPM LLC</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/ecoAPM/dotnet-srcset</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/ecoAPM/dotnet-srcset</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/ecoAPM/SrcSet</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ecoAPM/SrcSet</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
