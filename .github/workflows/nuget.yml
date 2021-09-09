@@ -17,7 +17,7 @@ jobs:
         dotnet-version: 5.0.x
 
     - name: Run tests
-      run: dotnet test -c Release
+      run: dotnet test
 
     - name: Package
       run: dotnet pack -c Release -p:ContinuousIntegrationBuild=true

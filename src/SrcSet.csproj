@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<Version>3.1.0</Version>
+		<Version>3.1.1</Version>
 		<PackageId>SrcSet</PackageId>
 		<Description>A CLI to create sets of responsive images for the web</Description>
 		<Authors>ecoAPM LLC</Authors>
@@ -12,7 +12,6 @@
 		<AssemblyName>srcset</AssemblyName>
 		<OutputType>Exe</OutputType>
 		<PackAsTool>true</PackAsTool>
-		<Deterministic>true</Deterministic>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/ecoAPM/SrcSet</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
