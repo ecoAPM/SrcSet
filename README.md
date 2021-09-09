@@ -1,9 +1,14 @@
 # dotnet-srcset
 
+CLI for creating sets of responsive images for the web
+
 [![NuGet version](https://badge.fury.io/nu/srcset.svg)](https://www.nuget.org/packages/srcset/)
 [![Build Status](https://github.com/ecoAPM/dotnet-srcset/workflows/CI/badge.svg)](https://github.com/ecoAPM/dotnet-srcset/actions)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=coverage)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
 
-CLI for creating sets of responsive images for the web
+[![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
+[![Security](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_dotnet-srcset&metric=security_rating)](https://sonarcloud.io/dashboard?id=ecoAPM_dotnet-srcset)
 
 ## Installation
 
