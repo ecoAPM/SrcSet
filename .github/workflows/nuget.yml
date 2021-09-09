@@ -23,4 +23,4 @@ jobs:
       run: dotnet pack -c Release
 
     - name: Publish
-      run: dotnet nuget push src/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push src/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg src/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').symbols.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
