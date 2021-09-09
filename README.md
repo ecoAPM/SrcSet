@@ -2,7 +2,7 @@
 
 A CLI to create sets of responsive images for the web
 
-[![NuGet version](https://badge.fury.io/nu/srcset.svg)](https://www.nuget.org/packages/srcset/)
+[![NuGet version](https://img.shields.io/nuget/v/SrcSet?logo=nuget&label=Install)](https://www.nuget.org/packages/srcset/)
 [![Build Status](https://github.com/ecoAPM/SrcSet/workflows/CI/badge.svg)](https://github.com/ecoAPM/SrcSet/actions)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecoAPM_SrcSet&metric=coverage)](https://sonarcloud.io/dashboard?id=ecoAPM_SrcSet)
 
