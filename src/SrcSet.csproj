@@ -1,27 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>srcset</AssemblyName>
-    <OutputType>Exe</OutputType>
-    <PackAsTool>true</PackAsTool>
-    <PackageId>srcset</PackageId>
-    <Version>2.0.0</Version>
-    <LangVersion>latest</LangVersion>
-    <Authors>Steve Desmond</Authors>
-    <Company>ecoAPM LLC</Company>
-    <Product>dotnet-srcset</Product>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Generate a set of responsive images</Description>
-    <Copyright>ecoAPM LLC</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/ecoAPM/dotnet-srcset</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ecoAPM/dotnet-srcset</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>2.0.0</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>srcset</AssemblyName>
+		<OutputType>Exe</OutputType>
+		<PackAsTool>true</PackAsTool>
+		<Version>3.0.0</Version>
+		<Authors>Steve Desmond</Authors>
+		<Company>ecoAPM LLC</Company>
+		<Product>dotnet-srcset</Product>
+		<Description>Generate a set of responsive images</Description>
+		<Copyright>ecoAPM LLC</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/ecoAPM/dotnet-srcset</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ecoAPM/dotnet-srcset</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.3"/>
+	</ItemGroup>
 </Project>

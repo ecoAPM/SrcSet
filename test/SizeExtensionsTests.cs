@@ -3,45 +3,45 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-    public class SizeExtensionsTests
-    {
-        [Fact]
-        public void CanResizeImage()
-        {
-            //arrange
-            var size = new Size(6, 4);
+	public class SizeExtensionsTests
+	{
+		[Fact]
+		public void CanResizeImage()
+		{
+			//arrange
+			var size = new Size(6, 4);
 
-            //act
-            var newSize = size.Resize(3);
+			//act
+			var newSize = size.Resize(3);
 
-            //assert
-            Assert.Equal(new Size(3, 2), newSize);
-        }
+			//assert
+			Assert.Equal(new Size(3, 2), newSize);
+		}
 
-        [Fact]
-        public void CanCalculateLandscapeAspectRatio()
-        {
-            //arrange
-            var size = new Size(3, 2);
+		[Fact]
+		public void CanCalculateLandscapeAspectRatio()
+		{
+			//arrange
+			var size = new Size(3, 2);
 
-            //act
-            var aspectRatio = size.AspectRatio();
+			//act
+			var aspectRatio = size.AspectRatio();
 
-            //assert
-            Assert.Equal(1.5, aspectRatio);
-        }
+			//assert
+			Assert.Equal(1.5, aspectRatio);
+		}
 
-        [Fact]
-        public void CanCalculatePortraitAspectRatio()
-        {
-            //arrange
-            var size = new Size(3, 4);
+		[Fact]
+		public void CanCalculatePortraitAspectRatio()
+		{
+			//arrange
+			var size = new Size(3, 4);
 
-            //act
-            var aspectRatio = size.AspectRatio();
+			//act
+			var aspectRatio = size.AspectRatio();
 
-            //assert
-            Assert.Equal(0.75, aspectRatio);
-        }
-    }
+			//assert
+			Assert.Equal(0.75, aspectRatio);
+		}
+	}
 }

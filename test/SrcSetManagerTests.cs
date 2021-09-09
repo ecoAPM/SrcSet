@@ -7,22 +7,22 @@ using Xunit;
 
 namespace SrcSet.Tests
 {
-    public class SrcSetManagerTests : IDisposable
-    {
-        [Fact]
-        public async Task CanResizeImage()
-        {
-            //arrange
-            var manager = new SrcSetManager(s => new Image<Rgba32>(1, 1), s => {});
+	public sealed class SrcSetManagerTests : IDisposable
+	{
+		[Fact]
+		public async Task CanResizeImage()
+		{
+			//arrange
+			var manager = new SrcSetManager(_ => new Image<Rgba32>(1, 1), _ => { });
 
-            //act
-            await manager.SaveSrcSet("test.png", new ushort[] { 3 });
+			//act
+			await manager.SaveSrcSet("test.png", new ushort[] { 3 });
 
-            //assert
-            Assert.True(File.Exists("test-0003.png"));
-        }
+			//assert
+			Assert.True(File.Exists("test-0003.png"));
+		}
 
-        public void Dispose()
-            => File.Delete("test-0003.png");
-    }
+		public void Dispose()
+			=> File.Delete("test-0003.png");
+	}
 }
