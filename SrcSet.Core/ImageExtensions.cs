@@ -3,7 +3,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
-namespace SrcSet
+namespace SrcSet.Core
 {
 	public static class ImageExtensions
 	{

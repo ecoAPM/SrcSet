@@ -2,13 +2,13 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0"/>
 		<PackageReference Include="xunit" Version="2.4.1"/>
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3"/>
 		<PackageReference Include="coverlet.collector" Version="3.1.0" />
-		<ProjectReference Include="..\src\SrcSet.csproj"/>
-		<None Update="test-0001.png" CopyToOutputDirectory="PreserveNewest"/>
-		<None Update="test.png" CopyToOutputDirectory="PreserveNewest"/>
+		<ProjectReference Include="../SrcSet/SrcSet.csproj"/>
+		<None Include="../test.png" CopyToOutputDirectory="PreserveNewest"/>
 	</ItemGroup>
 </Project>

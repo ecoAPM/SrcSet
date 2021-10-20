@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 
-namespace SrcSet
+namespace SrcSet.Core
 {
 	public static class FileHelpers
 	{

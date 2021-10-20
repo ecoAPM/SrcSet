@@ -5,7 +5,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Xunit;
 
-namespace SrcSet.Tests
+namespace SrcSet.Core.Tests
 {
 	public sealed class SrcSetManagerTests : IDisposable
 	{

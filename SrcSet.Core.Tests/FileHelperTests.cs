@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Xunit;
 
-namespace SrcSet.Tests
+namespace SrcSet.Core.Tests
 {
 	public sealed class FileHelperTests
 	{

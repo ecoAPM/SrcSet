@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Version>3.2.0</Version>
+		<PackageId>SrcSet.Core</PackageId>
+		<Description>A library to create sets of responsive images for the web</Description>
+		<Authors>ecoAPM LLC</Authors>
+		<Company>ecoAPM LLC</Company>
+		<Copyright>ecoAPM LLC</Copyright>
+		<Product>SrcSet</Product>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/ecoAPM/SrcSet</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/ecoAPM/SrcSet</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all"/>
+		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4"/>
+		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="."/>
+	</ItemGroup>
+</Project>

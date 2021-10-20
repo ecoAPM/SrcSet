@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace SrcSet
+namespace SrcSet.Core
 {
 	public sealed class SrcSetManager
 	{
