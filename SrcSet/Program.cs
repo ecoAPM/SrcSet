@@ -34,7 +34,7 @@ namespace SrcSet
 				return 1;
 			}
 
-			var manager = new SrcSetManager(Image.Load, Console.WriteLine);
+			var manager = new SrcSetManager(Image.LoadAsync, Console.WriteLine);
 			var sizes = args.GetSizes();
 			var resizeTasks = fileOrDirectoryArg.GetFiles(resizeRecursively, resizeDirectory)
 				.Select(async file => await manager.SaveSrcSet(file, sizes));

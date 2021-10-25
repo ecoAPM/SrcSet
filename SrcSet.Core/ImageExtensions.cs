@@ -1,25 +1,31 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
 namespace SrcSet.Core
 {
 	public static class ImageExtensions
 	{
-		public static string SaveResizedImage(this Image<Rgba32> image, string filePath, Size newSize)
+		public static async Task<string> Save(this Image image, string filePath)
 		{
-			var dir = Path.GetDirectoryName(filePath);
-			var newFileName = FileHelpers.GetFilename(filePath, newSize);
-			var newPath = Path.Combine(dir, newFileName);
+			var newFileName = FileHelpers.GetFilename(filePath, image.Size());
+			var newPath = NewPath(filePath, newFileName);
 			if (File.Exists(newPath))
 				return null;
 
-			using var resized = image.CloneAs<Rgba32>();
-			resized.Mutate(i => i.Resize(newSize.Width, newSize.Height));
-			resized.Save(newPath);
-
+			await image.SaveAsync(newPath);
 			return newFileName;
 		}
+
+		private static string NewPath(string filePath, string newFileName)
+		{
+			var dir = Path.GetDirectoryName(filePath) ?? string.Empty;
+			var newPath = Path.Combine(dir, newFileName);
+			return newPath;
+		}
+
+		public static Image Resize(this Image image, Size newSize)
+			=> image.Clone(i => i.Resize(newSize.Width, newSize.Height, KnownResamplers.Lanczos8));
 	}
 }

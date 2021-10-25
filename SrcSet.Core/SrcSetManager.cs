@@ -4,16 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
 
 namespace SrcSet.Core
 {
 	public sealed class SrcSetManager
 	{
-		private readonly Func<byte[], Image<Rgba32>> _loadImage;
+		private readonly Func<Stream, Task<Image>> _loadImage;
 		private readonly Action<string> _log;
 
-		public SrcSetManager(Func<byte[], Image<Rgba32>> loadImage, Action<string> log)
+		public SrcSetManager(Func<Stream, Task<Image>> loadImage, Action<string> log)
 		{
 			_loadImage = loadImage;
 			_log = log;
@@ -21,12 +20,13 @@ namespace SrcSet.Core
 
 		public async Task SaveSrcSet(string filePath, IEnumerable<ushort> widths)
 		{
-			var data = await File.ReadAllBytesAsync(filePath);
-			using var image = _loadImage(data);
-			var size = new Size(image.Width, image.Height);
+			var stream = File.OpenRead(filePath);
+			using var image = await _loadImage(stream);
+			var size = image.Size();
 			foreach (var newSize in widths.Select(width => size.Resize(width)))
 			{
-				var newFile = image.SaveResizedImage(filePath, newSize);
+				var resized = image.Resize(newSize);
+				var newFile = await resized.Save(filePath);
 				if (newFile != null)
 					_log(newFile);
 			}

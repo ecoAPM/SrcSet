@@ -13,7 +13,8 @@ namespace SrcSet.Core.Tests
 		public async Task CanResizeImage()
 		{
 			//arrange
-			var manager = new SrcSetManager(_ => new Image<Rgba32>(1, 1), _ => { });
+			Image image = new Image<Rgba32>(1, 1);
+			var manager = new SrcSetManager(_ => Task.FromResult(image), _ => { });
 
 			//act
 			await manager.SaveSrcSet("test.png", new ushort[] { 3 });
