@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using SrcSet.Core;
 using Xunit;
 
 namespace SrcSet.Tests
@@ -15,7 +16,7 @@ namespace SrcSet.Tests
 			var sizes = args.GetSizes();
 
 			//assert
-			Assert.Equal(Arguments.DefaultSizes, sizes);
+			Assert.Equal(SrcSetManager.DefaultSizes, sizes);
 		}
 
 		[Fact]
@@ -28,7 +29,7 @@ namespace SrcSet.Tests
 			var sizes = args.GetSizes();
 
 			//assert
-			Assert.Equal(Arguments.DefaultSizes, sizes);
+			Assert.Equal(SrcSetManager.DefaultSizes, sizes);
 		}
 
 		[Fact]

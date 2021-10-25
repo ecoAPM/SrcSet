@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SrcSet.Core;
 
 namespace SrcSet
 {
 	public static class Arguments
 	{
-		public static readonly ushort[] DefaultSizes = { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
-		public static readonly string[] ValidExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff" };
 		public const string RecursiveFlag = "-r";
 
 		public static IEnumerable<ushort> GetSizes(this IReadOnlyCollection<string> args)
 		{
 			var numberOfFilesystemArguments = args.Contains(RecursiveFlag) ? 2 : 1;
 			return args.Count == numberOfFilesystemArguments
-				? DefaultSizes
+				? SrcSetManager.DefaultSizes
 				: args.Skip(numberOfFilesystemArguments).Select(a => Convert.ToUInt16(a));
 		}
 
@@ -29,7 +28,7 @@ namespace SrcSet
 				? SearchOption.AllDirectories
 				: SearchOption.TopDirectoryOnly;
 			return resizeDirectory
-				? Directory.EnumerateFiles(fileOrDirectoryArg, "*.*", searchOption).Where(f => ValidExtensions.Contains(Path.GetExtension(f).ToLower()))
+				? Directory.EnumerateFiles(fileOrDirectoryArg, "*.*", searchOption).Where(f => SrcSetManager.ValidExtensions.Contains(Path.GetExtension(f).ToLower()))
 				: new[] { fileOrDirectoryArg };
 		}
 	}

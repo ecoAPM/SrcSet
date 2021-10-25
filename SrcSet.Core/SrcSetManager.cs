@@ -9,6 +9,15 @@ namespace SrcSet.Core
 {
 	public sealed class SrcSetManager
 	{
+		public static readonly ushort[] DefaultSizes
+			= { 240, 320, 480, 640, 800, 960, 1280, 1600, 1920, 2400 };
+
+		public static readonly IReadOnlyCollection<string> ValidExtensions
+			= SupportedFormats.Default
+				.SelectMany(i => i.FileExtensions)
+				.Select(e => $".{e.ToLower()}")
+				.ToArray();
+
 		private readonly Func<Stream, Task<Image>> _loadImage;
 		private readonly Action<string> _log;
 

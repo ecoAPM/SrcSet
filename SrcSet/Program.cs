@@ -15,7 +15,7 @@ namespace SrcSet
 			{
 				Console.WriteLine("Usage: srcset {filename or directory} [-r] [size1 [size2 [size3 [...]]]] ");
 				Console.WriteLine("{0}: recurse subdirectories", Arguments.RecursiveFlag);
-				Console.WriteLine("Default sizes: " + string.Join(" ", Arguments.DefaultSizes));
+				Console.WriteLine("Default sizes: " + string.Join(" ", SrcSetManager.DefaultSizes));
 				return 1;
 			}
 
@@ -37,7 +37,7 @@ namespace SrcSet
 			var manager = new SrcSetManager(Image.LoadAsync, Console.WriteLine);
 			var sizes = args.GetSizes();
 			var resizeTasks = fileOrDirectoryArg.GetFiles(resizeRecursively, resizeDirectory)
-				.Select(async file => await manager.SaveSrcSet(file, sizes));
+				.Select(file => manager.SaveSrcSet(file, sizes));
 			await Task.WhenAll(resizeTasks);
 			return 0;
 		}
