@@ -7,7 +7,7 @@ namespace SrcSet.Core
 {
 	public static class ImageExtensions
 	{
-		public static string SaveResizedImage(this Image<Rgba32> image, string filePath, System.Drawing.Size newSize)
+		public static string SaveResizedImage(this Image<Rgba32> image, string filePath, Size newSize)
 		{
 			var dir = Path.GetDirectoryName(filePath);
 			var newFileName = FileHelpers.GetFilename(filePath, newSize);

@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using SixLabors.ImageSharp;
 using Xunit;
 
 namespace SrcSet.Core.Tests

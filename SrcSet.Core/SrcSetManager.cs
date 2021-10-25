@@ -23,7 +23,7 @@ namespace SrcSet.Core
 		{
 			var data = await File.ReadAllBytesAsync(filePath);
 			using var image = _loadImage(data);
-			var size = new System.Drawing.Size(image.Width, image.Height);
+			var size = new Size(image.Width, image.Height);
 			foreach (var newSize in widths.Select(width => size.Resize(width)))
 			{
 				var newFile = image.SaveResizedImage(filePath, newSize);

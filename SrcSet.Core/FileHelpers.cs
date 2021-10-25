@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using System.IO;
+﻿using System.IO;
+using SixLabors.ImageSharp;
 
 namespace SrcSet.Core
 {
