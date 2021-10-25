@@ -37,7 +37,6 @@ namespace SrcSet.Statiq.Tests
 			//assert
 			Assert.NotNull(context);
 			Assert.Equal("img/test-0123.png", newName);
-
 		}
 	}
 }

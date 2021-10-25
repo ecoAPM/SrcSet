@@ -33,10 +33,22 @@ namespace SrcSet.Statiq
 		public static string SrcSet(string baseImage, IReadOnlyList<ushort> widths = null, ushort? defaultWidth = null, IDictionary<string, string> attributes = null)
 		{
 			widths ??= SrcSetManager.DefaultSizes.ToArray();
-			var defaultFilename = new NormalizedPath(baseImage).GetDestination(new Size(defaultWidth ?? widths[widths.Count / 3], 0));
-			var srcset = widths.Select(w => new NormalizedPath(baseImage).GetDestination(new Size(w, 0)) + $" {w}w");
+			defaultWidth ??= widths[widths.Count / 3];
+
+			var defaultSize = new Size(defaultWidth.Value, 0);
+			var defaultFilename = new NormalizedPath(baseImage).GetDestination(defaultSize);
+			var srcset = widths.Select(w => SrcSetItem(baseImage, w));
 			var attributeStrings = attributes?.Select(a => $@"{a.Key}=""{a.Value}""") ?? ArraySegment<string>.Empty;
-			return $@"<img src=""{defaultFilename}"" srcset=""{string.Join(", ", srcset)}"" {string.Join(" ", attributeStrings)} />".Replace("  />", " />");
+
+			return $@"<img src=""/{defaultFilename}"" srcset=""{string.Join(", ", srcset)}"" {string.Join(" ", attributeStrings)} />".Replace("  />", " />");
+		}
+
+		private static string SrcSetItem(string baseImage, ushort width)
+		{
+			var path = new NormalizedPath(baseImage);
+			var size = new Size(width, 0);
+			var destination = path.GetDestination(size);
+			return $"/{destination} {width}w";
 		}
 	}
 }
