@@ -35,8 +35,7 @@ namespace SrcSet.Statiq
 			widths ??= SrcSetManager.DefaultSizes.ToArray();
 			defaultWidth ??= widths[widths.Count / 3];
 
-			var defaultSize = new Size(defaultWidth.Value, 0);
-			var defaultFilename = new NormalizedPath(baseImage).GetDestination(defaultSize);
+			var defaultFilename = new NormalizedPath(baseImage).GetDestination(defaultWidth.Value);
 			var srcset = widths.Select(w => SrcSetItem(baseImage, w));
 			var attributeStrings = attributes?.Select(a => $@"{a.Key}=""{a.Value}""") ?? ArraySegment<string>.Empty;
 
@@ -46,8 +45,7 @@ namespace SrcSet.Statiq
 		private static string SrcSetItem(string baseImage, ushort width)
 		{
 			var path = new NormalizedPath(baseImage);
-			var size = new Size(width, 0);
-			var destination = path.GetDestination(size);
+			var destination = path.GetDestination(width);
 			return $"/{destination} {width}w";
 		}
 	}

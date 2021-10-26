@@ -9,7 +9,7 @@ namespace SrcSet.Core
 	{
 		public static async Task<string> Save(this Image image, string filePath)
 		{
-			var newFileName = FileHelpers.GetFilename(filePath, image.Size());
+			var newFileName = FileHelpers.GetFilename(filePath, (ushort)image.Width);
 			var newPath = NewPath(filePath, newFileName);
 			if (File.Exists(newPath))
 				return null;

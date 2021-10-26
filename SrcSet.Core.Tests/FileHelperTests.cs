@@ -1,5 +1,4 @@
-﻿using SixLabors.ImageSharp;
-using Xunit;
+﻿using Xunit;
 
 namespace SrcSet.Core.Tests
 {
@@ -10,10 +9,9 @@ namespace SrcSet.Core.Tests
 		{
 			//arrange
 			const string filename = "test.png";
-			var size = new Size(123, 234);
 
 			//act
-			var newName = FileHelpers.GetFilename(filename, size);
+			var newName = FileHelpers.GetFilename(filename, 123);
 
 			//assert
 			Assert.Equal("test-0123.png", newName);

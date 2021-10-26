@@ -31,11 +31,11 @@ namespace SrcSet.Statiq
 
 		private static async Task<IDocument> GetResizedDocument(NormalizedPath source, Image image, ushort width, IExecutionContext context)
 		{
-			var newSize = image.Size().Resize(width);
-			var destination = source.GetDestination(newSize);
+			var destination = source.GetDestination(width);
 			var encoder = image.DetectEncoder(destination);
 			var output = new MemoryStream();
 
+			var newSize = image.Size().Resize(width);
 			using var resized = image.Resize(newSize);
 			await resized.SaveAsync(output, encoder);
 

@@ -1,5 +1,4 @@
-﻿using SixLabors.ImageSharp;
-using Statiq.Common;
+﻿using Statiq.Common;
 using Statiq.Testing;
 using Xunit;
 
@@ -29,10 +28,9 @@ namespace SrcSet.Statiq.Tests
 			//arrange
 			var context = new TestExecutionContext();
 			var path = new NormalizedPath("img/test.png");
-			var size = new Size(123, 234);
 
 			//act
-			var newName = path.GetDestination(size);
+			var newName = path.GetDestination(123);
 
 			//assert
 			Assert.NotNull(context);
