@@ -26,11 +26,12 @@ namespace SrcSet.Statiq
 		{
 			var inputStream = input.GetContentStream();
 			var destinations = _widths.Select(w => input.Source.GetDestination(w)).ToList();
-			var alreadyDone = destinations.All(d => context.FileSystem.GetOutputFile(d).Exists);
+			var cached = destinations.Select(d => context.FileSystem.GetCacheFile(d)).Where(f => f.Exists).ToList();
+			var alreadyDone = cached.Count == destinations.Count;
 			if (alreadyDone)
 			{
 				context.Log(LogLevel.Debug, $"Skipping {input.Source} since all sizes already exist");
-				return destinations.Select(d => context.GetDocument(d));
+				return cached.Select(f => f.ToDocument());
 			}
 
 			var image = await _loadImage(inputStream);
@@ -41,10 +42,11 @@ namespace SrcSet.Statiq
 		private static async Task<IDocument> GetResizedDocument(NormalizedPath source, Image image, ushort width, IExecutionContext context)
 		{
 			var destination = source.GetDestination(width);
-			if (context.FileSystem.GetOutputFile(destination).Exists)
+			var cached = context.FileSystem.GetCacheFile(destination);
+			if (cached.Exists)
 			{
 				context.Log(LogLevel.Debug, $"Skipping {destination} since it already exists");
-				return context.GetDocument(destination);
+				return cached.ToDocument();
 			}
 
 			var encoder = image.DetectEncoder(destination);

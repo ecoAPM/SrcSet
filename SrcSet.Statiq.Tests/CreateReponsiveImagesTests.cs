@@ -47,9 +47,9 @@ namespace SrcSet.Statiq.Tests
 			var doc = new TestDocument(new NormalizedPath("input/test.png"));
 			var context = new TestExecutionContext();
 			context.SetInputs(doc);
-			context.FileSystem.GetOutputFile("input/test-0001.png").OpenWrite();
-			context.FileSystem.GetOutputFile("input/test-0002.png").OpenWrite();
-			context.FileSystem.GetOutputFile("input/test-0003.png").OpenWrite();
+			context.FileSystem.GetCacheFile("input/test-0001.png").OpenWrite();
+			context.FileSystem.GetCacheFile("input/test-0002.png").OpenWrite();
+			context.FileSystem.GetCacheFile("input/test-0003.png").OpenWrite();
 
 			var module = new CreateResponsiveImages(_ => throw new Exception(), new ushort[] { 1, 2, 3 });
 
@@ -67,7 +67,7 @@ namespace SrcSet.Statiq.Tests
 			var doc = new TestDocument(new NormalizedPath("input/test.png"));
 			var context = new TestExecutionContext();
 			context.SetInputs(doc);
-			context.FileSystem.GetOutputFile("input/test-0002.png").OpenWrite();
+			context.FileSystem.GetCacheFile("input/test-0002.png").OpenWrite();
 
 			Image image = new Image<Rgba32>(4, 4);
 
