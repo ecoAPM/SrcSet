@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Statiq.Common;
+using Statiq.Core;
 using Statiq.Testing;
 using Xunit;
 
@@ -8,23 +11,29 @@ namespace SrcSet.Statiq.Tests
 	public class ResponsiveImagesTests
 	{
 		[Fact]
-		public void CanCreateDefaultPipeline()
+		public async Task FilesAreFilteredByImage()
 		{
-			//act
+			//arrange
+			var docs = new List<IDocument>
+			{
+				new TestDocument(new NormalizedPath("test.png")),
+				new TestDocument(new NormalizedPath("test.txt")),
+				new TestDocument(new NormalizedPath("test.jpg"))
+			};
+			var context = new TestExecutionContext();
+			context.SetInputs(docs);
+
 			var pipeline = new ResponsiveImages();
+			var filter = pipeline.ProcessModules.First(m => m is FilterDocuments);
 
-			//assert
-			Assert.IsAssignableFrom<IPipeline>(pipeline);
-		}
-
-		[Fact]
-		public void CanCreateCustomPipeline()
-		{
 			//act
-			var pipeline = new ResponsiveImages("*.jpg", new ushort[] { 1, 2, 3 }, _ => null);
+			var output = await filter.ExecuteAsync(context);
 
 			//assert
-			Assert.IsAssignableFrom<IPipeline>(pipeline);
+			var files = output.Select(doc => doc.Destination.FileName.ToString()).ToArray();
+			Assert.Equal(2, files.Length);
+			Assert.Equal("test.png", files[0]);
+			Assert.Equal("test.jpg", files[1]);
 		}
 
 		[Fact]
