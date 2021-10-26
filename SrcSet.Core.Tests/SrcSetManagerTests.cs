@@ -10,6 +10,16 @@ namespace SrcSet.Core.Tests
 	public sealed class SrcSetManagerTests : IDisposable
 	{
 		[Fact]
+		public void CanCreateDefaultManager()
+		{
+			//act
+			var manager = new SrcSetManager();
+
+			//assert
+			Assert.IsType<SrcSetManager>(manager);
+		}
+
+		[Fact]
 		public async Task CanResizeImage()
 		{
 			//arrange

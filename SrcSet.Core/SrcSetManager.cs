@@ -21,12 +21,31 @@ namespace SrcSet.Core
 		private readonly Func<Stream, Task<Image>> _loadImage;
 		private readonly Action<string> _log;
 
+		/// <summary>
+		/// Create a SrcSet Manager with the default parameters:
+		/// - ImageSharp's async image loading
+		/// - Output resulting filenames to console
+		/// </summary>
+		public SrcSetManager() : this(Image.LoadAsync, Console.WriteLine)
+		{
+		}
+
+		/// <summary>
+		/// Create a SrcSet Manager
+		/// </summary>
+		/// <param name="loadImage">Function that turns a stream into an ImageSharp image</param>
+		/// <param name="log">Action that logs resulting output</param>
 		public SrcSetManager(Func<Stream, Task<Image>> loadImage, Action<string> log)
 		{
 			_loadImage = loadImage;
 			_log = log;
 		}
 
+		/// <summary>
+		/// Saves a set
+		/// </summary>
+		/// <param name="filePath">The file path of the image to be resized</param>
+		/// <param name="widths">The list of widths (in pixels) </param>
 		public async Task SaveSrcSet(string filePath, IEnumerable<ushort> widths)
 		{
 			var stream = File.OpenRead(filePath);

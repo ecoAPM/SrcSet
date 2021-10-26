@@ -15,6 +15,12 @@ namespace SrcSet.Statiq
 {
 	public class ResponsiveImages : Pipeline
 	{
+		/// <summary>
+		/// Create sets of responsive images
+		/// </summary>
+		/// <param name="fileGlob">The pattern of asset files to resize</param>
+		/// <param name="widths">The list of widths (in pixels) to resize the images to</param>
+		/// <param name="loadImage">A custom image loader</param>
 		public ResponsiveImages(string fileGlob = null, IEnumerable<ushort> widths = null, Func<Stream, Task<Image>> loadImage = null)
 		{
 			Dependencies.Add(nameof(Inputs));
@@ -30,6 +36,14 @@ namespace SrcSet.Statiq
 			OutputModules = new ModuleList { new WriteFiles() };
 		}
 
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="baseImage">The path (relative to the asset dir) to the original image</param>
+		/// <param name="widths">The widths (in pixels) of the resized images</param>
+		/// <param name="defaultWidth">The default width, for the src attribute</param>
+		/// <param name="attributes">Additional attributes for the img tag</param>
+		/// <returns></returns>
 		public static string SrcSet(string baseImage, IReadOnlyList<ushort> widths = null, ushort? defaultWidth = null, IDictionary<string, string> attributes = null)
 		{
 			widths ??= SrcSetManager.DefaultSizes.ToArray();
