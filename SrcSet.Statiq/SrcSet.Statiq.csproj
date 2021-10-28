@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
  		<TargetFramework>net5.0</TargetFramework>
-		<Version>3.2.1</Version>
+		<Version>3.2.2</Version>
 		<PackageId>SrcSet.Statiq</PackageId>
  		<Description>Automate creating sets of responsive images for your Statiq site</Description>
  		<Authors>ecoAPM LLC</Authors>

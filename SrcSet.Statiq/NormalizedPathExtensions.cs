@@ -9,11 +9,11 @@ namespace SrcSet.Statiq
 		public static bool IsImage(this NormalizedPath path)
 			=> SrcSetManager.ValidExtensions.Contains(path.Extension);
 
-		public static string GetDestination(this NormalizedPath source, ushort width)
+		public static NormalizedPath GetDestination(this NormalizedPath source, ushort width)
 		{
 			var input = source.GetRelativeInputPath();
 			var filename = FileHelpers.GetFilename(source.FileName.ToString(), width);
-			return input.ChangeFileName(filename).ToString();
+			return input.ChangeFileName(filename);
 		}
 	}
 }
