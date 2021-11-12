@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<Version>3.2.3</Version>
+		<TargetFramework>net6.0</TargetFramework>
+		<Version>4.0.0</Version>
 		<PackageId>SrcSet</PackageId>
 		<Description>A CLI to create sets of responsive images for the web</Description>
 		<Authors>ecoAPM LLC</Authors>
