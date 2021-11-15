@@ -23,7 +23,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all"/>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.31.0.39249" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.32.0.39516" PrivateAssets="all" />
 		<ProjectReference Include="../SrcSet.Core/SrcSet.Core.csproj"/>
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="."/>
 	</ItemGroup>
