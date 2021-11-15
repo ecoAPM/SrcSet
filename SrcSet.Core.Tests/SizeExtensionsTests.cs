@@ -1,47 +1,46 @@
-﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp;
 using Xunit;
 
-namespace SrcSet.Core.Tests
+namespace SrcSet.Core.Tests;
+
+public sealed class SizeExtensionsTests
 {
-	public sealed class SizeExtensionsTests
+	[Fact]
+	public void CanResizeImage()
 	{
-		[Fact]
-		public void CanResizeImage()
-		{
-			//arrange
-			var size = new Size(6, 4);
+		//arrange
+		var size = new Size(6, 4);
 
-			//act
-			var newSize = size.Resize(3);
+		//act
+		var newSize = size.Resize(3);
 
-			//assert
-			Assert.Equal(new Size(3, 2), newSize);
-		}
+		//assert
+		Assert.Equal(new Size(3, 2), newSize);
+	}
 
-		[Fact]
-		public void CanCalculateLandscapeAspectRatio()
-		{
-			//arrange
-			var size = new Size(3, 2);
+	[Fact]
+	public void CanCalculateLandscapeAspectRatio()
+	{
+		//arrange
+		var size = new Size(3, 2);
 
-			//act
-			var aspectRatio = size.AspectRatio();
+		//act
+		var aspectRatio = size.AspectRatio();
 
-			//assert
-			Assert.Equal(1.5, aspectRatio);
-		}
+		//assert
+		Assert.Equal(1.5, aspectRatio);
+	}
 
-		[Fact]
-		public void CanCalculatePortraitAspectRatio()
-		{
-			//arrange
-			var size = new Size(3, 4);
+	[Fact]
+	public void CanCalculatePortraitAspectRatio()
+	{
+		//arrange
+		var size = new Size(3, 4);
 
-			//act
-			var aspectRatio = size.AspectRatio();
+		//act
+		var aspectRatio = size.AspectRatio();
 
-			//assert
-			Assert.Equal(0.75, aspectRatio);
-		}
+		//assert
+		Assert.Equal(0.75, aspectRatio);
 	}
 }
