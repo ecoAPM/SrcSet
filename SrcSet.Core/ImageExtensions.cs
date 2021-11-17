@@ -1,5 +1,3 @@
-using System.IO;
-using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
@@ -7,7 +5,7 @@ namespace SrcSet.Core;
 
 public static class ImageExtensions
 {
-	public static async Task<string> Save(this Image image, string filePath)
+	public static async Task<string?> Save(this Image image, string filePath)
 	{
 		var newFileName = FileHelpers.GetFilename(filePath, (ushort)image.Width);
 		var newPath = NewPath(filePath, newFileName);

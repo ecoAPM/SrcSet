@@ -1,4 +1,3 @@
-using System.Linq;
 using SrcSet.Core;
 using Statiq.Common;
 

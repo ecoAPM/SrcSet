@@ -1,17 +1,12 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Statiq.Common;
 using Statiq.Testing;
 using Xunit;
-using Assert = Xunit.Assert;
 
 namespace SrcSet.Statiq.Tests;
 
-public class CreateReponsiveImagesTests
+public class CreateResponsiveImagesTests
 {
 	[Fact]
 	public async Task ImageIsLoadedOnceAndResizedCorrectNumberOfTimes()

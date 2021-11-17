@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SrcSet.Core;
 using Statiq.Common;
@@ -21,7 +16,7 @@ public class ResponsiveImages : Pipeline
 	/// <param name="fileGlob">The pattern of asset files to resize</param>
 	/// <param name="widths">The list of widths (in pixels) to resize the images to</param>
 	/// <param name="loadImage">A custom image loader</param>
-	public ResponsiveImages(string fileGlob = null, IEnumerable<ushort> widths = null, Func<Stream, Task<Image>> loadImage = null)
+	public ResponsiveImages(string? fileGlob = null, IEnumerable<ushort>? widths = null, Func<Stream, Task<Image>>? loadImage = null)
 	{
 		Dependencies.Add(nameof(Inputs));
 
@@ -44,7 +39,7 @@ public class ResponsiveImages : Pipeline
 	/// <param name="defaultWidth">The default width, for the src attribute</param>
 	/// <param name="attributes">Additional attributes for the img tag</param>
 	/// <returns></returns>
-	public static string SrcSet(string baseImage, IReadOnlyList<ushort> widths = null, ushort? defaultWidth = null, IDictionary<string, string> attributes = null)
+	public static string SrcSet(string baseImage, IReadOnlyList<ushort>? widths = null, ushort? defaultWidth = null, IDictionary<string, string>? attributes = null)
 	{
 		widths ??= SrcSetManager.DefaultSizes.ToArray();
 		defaultWidth ??= widths[widths.Count / 3];

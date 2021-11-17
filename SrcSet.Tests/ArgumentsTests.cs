@@ -1,4 +1,3 @@
-using System.IO;
 using SrcSet.Core;
 using Xunit;
 
