@@ -44,14 +44,17 @@ public sealed class SrcSetManager
 	public async Task SaveSrcSet(string filePath, IEnumerable<ushort> widths)
 	{
 		var stream = File.OpenRead(filePath);
-		using var image = await _loadImage(stream);
+		var image = await _loadImage(stream);
 		var size = image.Size();
-		foreach (var newSize in widths.Select(width => size.Resize(width)))
-		{
-			var resized = image.Resize(newSize);
-			var newFile = await resized.Save(filePath);
-			if (newFile != null)
-				_log(newFile);
-		}
+		var tasks = widths.Select(width => Resize(filePath, image, size.Resize(width)));
+		await Task.WhenAll(tasks);
+	}
+
+	private async Task Resize(string filePath, Image image, Size newSize)
+	{
+		var resized = image.Resize(newSize);
+		var newFile = await resized.Save(filePath);
+		if (newFile != null)
+			_log(newFile);
 	}
 }

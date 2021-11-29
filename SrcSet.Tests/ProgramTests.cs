@@ -18,19 +18,6 @@ public sealed class ProgramTests
 	}
 
 	[Fact]
-	public async Task CanShowUsage()
-	{
-		//arrange
-		var args = Array.Empty<string>();
-
-		//act
-		var result = await Program.Main(args);
-
-		//assert
-		Assert.Equal(1, result);
-	}
-
-	[Fact]
 	public async Task ShowsErrorWhenNotFound()
 	{
 		//arrange
