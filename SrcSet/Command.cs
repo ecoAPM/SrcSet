@@ -13,25 +13,8 @@ public class Command : AsyncCommand<Settings>
 			=> _console = console;
 
 	public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
-	{
-		if (!File.Exists(settings.Path) && !Directory.Exists(settings.Path))
-		{
-			_console.WriteLine("Could not find file or directory named \"{0}\"", settings.Path);
-			return 1;
-		}
-
-		var resizeDirectory = settings.Path.IsDirectory();
-		if (settings.Recursive && !resizeDirectory)
-		{
-			_console.WriteLine("\"" + Arguments.RecursiveFlag + "\" can only be used with a directory");
-			return 1;
-		}
-
-		var manager = new SrcSetManager(Image.LoadAsync, _console.WriteLine);
-		var resizeTasks = settings.Path
-			.GetFiles(settings.Recursive, resizeDirectory)
-			.Select(file => manager.SaveSrcSet(file, settings.Sizes));
-		await Task.WhenAll(resizeTasks);
-		return 0;
-	}
+		=> await _console.Status().StartAsync("Running...", _ => Run(settings));
+	
+	private async Task<int> Run(Settings settings)
+		=> await Factory.App(_console).Run(settings);
 }
