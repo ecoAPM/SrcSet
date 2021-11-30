@@ -25,7 +25,7 @@ public class CreateResponsiveImages : ParallelModule
 		var alreadyDone = cached.Count == destinations.Count;
 		if (alreadyDone)
 		{
-			context.Log(LogLevel.Debug, $"Skipping {input.Source} since all sizes already exist");
+			context.Log(LogLevel.Debug, "Skipping {source} since all sizes already exist", input.Source);
 			var docs = cached.Select(f => CachedDocument(input.Source, f.Path, f, context));
 			return await Task.WhenAll(docs);
 		}
@@ -41,14 +41,14 @@ public class CreateResponsiveImages : ParallelModule
 		var cached = context.FileSystem.GetOutputFile(destination);
 		if (cached.Exists)
 		{
-			context.Log(LogLevel.Debug, $"Skipping {destination} since it already exists");
+			context.Log(LogLevel.Debug, "Skipping {destination} since it already exists", destination);
 			return await CachedDocument(source, destination, cached, context);
 		}
 
 		var encoder = image.DetectEncoder(destination.ToString());
 		var output = new MemoryStream();
 
-		context.Log(LogLevel.Debug, $"Resizing {source} to {destination}...");
+		context.Log(LogLevel.Debug, "Resizing {source} to {destination}...", source, destination);
 		var newSize = image.Size().Resize(width);
 		using var resized = image.Resize(newSize);
 		await resized.SaveAsync(output, encoder);
