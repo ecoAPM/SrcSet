@@ -25,7 +25,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.32.0.39516" PrivateAssets="all" />
 		<PackageReference Include="Spectre.Console" Version="0.43.0" />
 		<ProjectReference Include="../SrcSet.Core/SrcSet.Core.csproj" />
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="." />
