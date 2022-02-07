@@ -25,7 +25,7 @@ public class ResponsiveImages : Pipeline
 				new GetPipelineDocuments(ContentType.Asset),
 				new FilterSources(Config.FromValue(fileGlob)),
 				new FilterDocuments(Config.FromDocument(doc => doc.Source.IsImage())),
-				new CreateResponsiveImages(loadImage ?? Image.LoadAsync, widths ?? SrcSetManager.DefaultSizes)
+				new CreateResponsiveImages(loadImage ?? (s => Image.LoadAsync(s)), widths ?? SrcSetManager.DefaultSizes)
 			};
 
 		OutputModules = new ModuleList { new WriteFiles() };
