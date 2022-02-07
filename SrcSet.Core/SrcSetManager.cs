@@ -21,7 +21,7 @@ public sealed class SrcSetManager
 	/// - ImageSharp's async image loading
 	/// - Output resulting filenames to console
 	/// </summary>
-	public SrcSetManager() : this(Image.LoadAsync, Console.WriteLine)
+	public SrcSetManager() : this(s => Image.LoadAsync(s), Console.WriteLine)
 	{
 	}
 

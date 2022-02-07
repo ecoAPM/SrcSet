@@ -1,5 +1,4 @@
 using SixLabors.ImageSharp;
-using Spectre.Console;
 using SrcSet.Core;
 
 namespace SrcSet;
@@ -28,7 +27,7 @@ public class App
 			return 1;
 		}
 
-		var manager = new SrcSetManager(Image.LoadAsync, _log);
+		var manager = new SrcSetManager(s => Image.LoadAsync(s), _log);
 		var resizeTasks = settings.Path
 			.GetFiles(settings.Recursive, resizeDirectory)
 			.Select(file => manager.SaveSrcSet(file, settings.Sizes));
