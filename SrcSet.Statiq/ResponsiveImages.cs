@@ -1,8 +1,5 @@
 using SixLabors.ImageSharp;
 using SrcSet.Core;
-using Statiq.Common;
-using Statiq.Core;
-using Statiq.Web;
 using Statiq.Web.Modules;
 using Statiq.Web.Pipelines;
 

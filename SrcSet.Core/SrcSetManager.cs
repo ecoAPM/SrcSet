@@ -1,5 +1,3 @@
-using SixLabors.ImageSharp;
-
 namespace SrcSet.Core;
 
 public sealed class SrcSetManager
@@ -45,8 +43,7 @@ public sealed class SrcSetManager
 	{
 		var stream = File.OpenRead(filePath);
 		var image = await _loadImage(stream);
-		var size = image.Size();
-		var tasks = widths.Select(width => Resize(filePath, image, size.Resize(width)));
+		var tasks = widths.Select(width => Resize(filePath, image, image.Size.Resize(width)));
 		await Task.WhenAll(tasks);
 	}
 

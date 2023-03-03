@@ -2,7 +2,6 @@ using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SrcSet.Core;
-using Statiq.Common;
 
 namespace SrcSet.Statiq;
 
@@ -49,7 +48,7 @@ public class CreateResponsiveImages : ParallelModule
 		var output = new MemoryStream();
 
 		context.Log(LogLevel.Debug, "Resizing {source} to {destination}...", source, destination);
-		var newSize = image.Size().Resize(width);
+		var newSize = image.Size.Resize(width);
 		using var resized = image.Resize(newSize);
 		await resized.SaveAsync(output, encoder);
 

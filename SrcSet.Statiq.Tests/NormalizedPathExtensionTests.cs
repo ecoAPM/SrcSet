@@ -1,4 +1,3 @@
-using Statiq.Common;
 using Statiq.Testing;
 using Xunit;
 

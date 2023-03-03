@@ -1,6 +1,5 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using Statiq.Common;
 using Statiq.Testing;
 using Xunit;
 

@@ -1,4 +1,3 @@
-using SrcSet.Core;
 using Xunit;
 
 namespace SrcSet.Tests;

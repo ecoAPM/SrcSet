@@ -1,5 +1,4 @@
 using SrcSet.Core;
-using Statiq.Common;
 
 namespace SrcSet.Statiq;
 

@@ -1,6 +1,3 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
-
 namespace SrcSet.Core;
 
 public static class ImageExtensions
