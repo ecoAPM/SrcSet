@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
- 		<TargetFramework>net6.0</TargetFramework>
-		<Version>4.1.0</Version>
 		<PackageId>SrcSet.Statiq</PackageId>
- 		<Description>Automate creating sets of responsive images for your Statiq site</Description>
+		<Description>Automate creating sets of responsive images for your Statiq site</Description>
+		<Version>5.0.0</Version>
  		<Authors>ecoAPM LLC</Authors>
  		<Company>ecoAPM LLC</Company>
  		<Copyright>ecoAPM LLC</Copyright>
  		<Product>SrcSet</Product>
+		<TargetFramework>net6.0</TargetFramework>
  		<PackageReadmeFile>README.md</PackageReadmeFile>
  		<PackageProjectUrl>https://github.com/ecoAPM/SrcSet</PackageProjectUrl>
  		<PackageLicenseExpression>MIT</PackageLicenseExpression>
