@@ -22,7 +22,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
-    	<PackageReference Include="Statiq.Web" Version="1.0.0-beta.56" />
+    	<PackageReference Include="Statiq.Web" Version="1.0.0-beta.57" />
 		<ProjectReference Include="../SrcSet.Core/SrcSet.Core.csproj" />
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="."/>
 	</ItemGroup>
