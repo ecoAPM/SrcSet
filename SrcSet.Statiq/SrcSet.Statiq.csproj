@@ -2,12 +2,12 @@
 	<PropertyGroup>
 		<PackageId>SrcSet.Statiq</PackageId>
 		<Description>Automate creating sets of responsive images for your Statiq site</Description>
-		<Version>5.0.0</Version>
+		<Version>6.0.0</Version>
  		<Authors>ecoAPM LLC</Authors>
  		<Company>ecoAPM LLC</Company>
  		<Copyright>ecoAPM LLC</Copyright>
  		<Product>SrcSet</Product>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
  		<PackageReadmeFile>README.md</PackageReadmeFile>
  		<PackageProjectUrl>https://github.com/ecoAPM/SrcSet</PackageProjectUrl>
  		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -21,7 +21,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="all" />
     	<PackageReference Include="Statiq.Web" Version="1.0.0-beta.59" />
 		<ProjectReference Include="../SrcSet.Core/SrcSet.Core.csproj" />
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="."/>
