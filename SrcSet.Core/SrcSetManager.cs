@@ -1,3 +1,5 @@
+using SixLabors.ImageSharp;
+
 namespace SrcSet.Core;
 
 public sealed class SrcSetManager
