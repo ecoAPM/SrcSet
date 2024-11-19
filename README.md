@@ -24,7 +24,7 @@ This repository contains 3 projects:
 
 ### Requirements
 
-- .NET 8 SDK
+- .NET SDK
 
 ### Installation
 
