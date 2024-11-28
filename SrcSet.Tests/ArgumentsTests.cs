@@ -21,7 +21,7 @@ public sealed class ArgumentsTests
 	public void IsDirectoryIsFalseWhenGivenAFile()
 	{
 		//arrange
-		var path = "test.png";
+		const string path = "test.png";
 
 		//act
 		var isDir = path.IsDirectory();
@@ -40,7 +40,8 @@ public sealed class ArgumentsTests
 		var files = arg.GetFiles(false, false);
 
 		//assert
-		Assert.Equal(new[] { "test.jpg" }, files);
+		var expected = new[] { "test.jpg" };
+		Assert.Equal(expected, files);
 	}
 
 	[Fact]
