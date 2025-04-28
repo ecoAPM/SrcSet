@@ -22,7 +22,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="all" />
-		<PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
+		<PackageReference Include="Spectre.Console.Cli" Version="0.51.1" />
     	<PackageReference Include="Statiq.Web" Version="1.0.0-beta.60" />
 		<ProjectReference Include="../SrcSet.Core/SrcSet.Core.csproj" />
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="." />
