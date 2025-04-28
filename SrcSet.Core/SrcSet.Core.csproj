@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="all" />
-		<PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
+		<PackageReference Include="SixLabors.ImageSharp" Version="3.1.8" />
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="." />
 	</ItemGroup>
 </Project>
