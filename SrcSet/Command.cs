@@ -10,9 +10,12 @@ public class Command : AsyncCommand<Settings>
 	public Command(IAnsiConsole console)
 			=> _console = console;
 
-	public override async Task<int> ExecuteAsync(CommandContext context, Settings settings)
+	public async Task<int> ExecuteAsync(CommandContext context, Settings settings)
+		=> await ExecuteAsync(context, settings, CancellationToken.None);
+
+	public override async Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken cancellationToken)
 		=> await _console.Status().StartAsync("Running...", _ => Run(settings));
-	
+
 	private async Task<int> Run(Settings settings)
 		=> await Factory.App(_console).Run(settings);
 }
