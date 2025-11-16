@@ -7,7 +7,7 @@
  		<Company>ecoAPM LLC</Company>
  		<Copyright>ecoAPM LLC</Copyright>
  		<Product>SrcSet</Product>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
  		<PackageReadmeFile>README.md</PackageReadmeFile>
  		<PackageProjectUrl>https://github.com/ecoAPM/SrcSet</PackageProjectUrl>
  		<PackageLicenseExpression>MIT</PackageLicenseExpression>
