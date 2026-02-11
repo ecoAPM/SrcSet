@@ -23,10 +23,16 @@ jobs:
       run: dotnet pack -c Release -p:ContinuousIntegrationBuild=true
 
     - name: Publish Core
-      run: dotnet nuget push SrcSet.Core/bin/Release/SrcSet.Core.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push SrcSet.Core/bin/Release/SrcSet.Core.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
+      env:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
 
     - name: Publish App
-      run: dotnet nuget push SrcSet/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push SrcSet/bin/Release/SrcSet.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
+      env:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
 
     - name: Publish Statiq
-      run: dotnet nuget push SrcSet.Statiq/bin/Release/SrcSet.Statiq.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push SrcSet.Statiq/bin/Release/SrcSet.Statiq.$(echo ${{ github.ref }} | sed 's/refs\/tags\///').nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
+      env:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
