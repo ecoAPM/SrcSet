@@ -4,13 +4,16 @@ namespace SrcSet.Statiq;
 
 public static class NormalizedPathExtensions
 {
-	public static bool IsImage(this NormalizedPath path)
-		=> SrcSetManager.ValidExtensions.Contains(path.Extension);
-
-	public static NormalizedPath GetDestination(this NormalizedPath source, ushort width)
+	extension(NormalizedPath path)
 	{
-		var input = source.GetRelativeInputPath();
-		var filename = FileHelpers.GetFilename(source.FileName.ToString(), width);
-		return input.ChangeFileName(filename);
+		public bool IsImage()
+			=> SrcSetManager.ValidExtensions.Contains(path.Extension);
+
+		public NormalizedPath GetDestination(ushort width)
+		{
+			var input = path.GetRelativeInputPath();
+			var filename = FileHelpers.GetFilename(path.FileName.ToString(), width);
+			return input.ChangeFileName(filename);
+		}
 	}
 }

@@ -1,5 +1,4 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+using SkiaSharp;
 using Statiq.Testing;
 using Xunit;
 
@@ -15,16 +14,16 @@ public class CreateResponsiveImagesTests
 		var context = new TestExecutionContext();
 		context.SetInputs(doc);
 
-		Image image = new Image<Rgba32>(4, 4);
+		var image = SKImage.FromBitmap(new SKBitmap(4, 4));
 		var loaded = 0;
 
-		Task<Image> Loader(Stream stream)
+		SKImage Loader(Stream stream)
 		{
 			loaded++;
-			return Task.FromResult(image);
+			return image;
 		}
 
-		var module = new CreateResponsiveImages(Loader, new ushort[] { 1, 2, 3 });
+		var module = new CreateResponsiveImages(Loader, [1, 2, 3]);
 
 		//act
 		var docs = await module.ExecuteAsync(context);
@@ -45,7 +44,7 @@ public class CreateResponsiveImagesTests
 		context.FileSystem.GetOutputFile("input/test-0002.png").OpenWrite();
 		context.FileSystem.GetOutputFile("input/test-0003.png").OpenWrite();
 
-		var module = new CreateResponsiveImages(_ => throw new Exception(), new ushort[] { 1, 2, 3 });
+		var module = new CreateResponsiveImages(_ => throw new Exception(), [1, 2, 3]);
 
 		//act
 		var docs = await module.ExecuteAsync(context);
@@ -63,9 +62,8 @@ public class CreateResponsiveImagesTests
 		context.SetInputs(doc);
 		context.FileSystem.GetOutputFile("input/test-0002.png").OpenWrite();
 
-		Image image = new Image<Rgba32>(4, 4);
-
-		var module = new CreateResponsiveImages(_ => Task.FromResult(image), new ushort[] { 1, 2, 3 });
+		var image = SKImage.FromBitmap(new SKBitmap(4, 4));
+		var module = new CreateResponsiveImages(_ => image, [1, 2, 3]);
 
 		//act
 		await module.ExecuteAsync(context);

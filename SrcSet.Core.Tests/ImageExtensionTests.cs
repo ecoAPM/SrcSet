@@ -1,5 +1,4 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+using SkiaSharp;
 using Xunit;
 
 namespace SrcSet.Core.Tests;
@@ -11,7 +10,7 @@ public sealed class ImageExtensionTests : IDisposable
 	{
 		//arrange
 		var path = Path.Join(Directory.GetCurrentDirectory(), "test.png");
-		var image = new Image<Rgba32>(2, 1);
+		using var image = SKImage.FromBitmap(new SKBitmap(2, 1));
 
 		//act
 		var newName = await image.Save(path);
@@ -25,7 +24,7 @@ public sealed class ImageExtensionTests : IDisposable
 	{
 		//arrange
 		var path = Path.Join(Directory.GetCurrentDirectory(), "test.png");
-		var image = new Image<Rgba32>(1, 1);
+		using var image = SKImage.FromBitmap(new SKBitmap(1, 1));
 
 		//act
 		var newName = await image.Save(path);
@@ -38,10 +37,10 @@ public sealed class ImageExtensionTests : IDisposable
 	public void CanResizeImage()
 	{
 		//arrange
-		var image = new Image<Rgba32>(1, 1);
+		using var image = SKImage.FromBitmap(new SKBitmap(1, 1));
 
 		//act
-		var resized = image.Resize(new Size(2, 3));
+		using var resized = image.Resize(new SKSizeI(2, 3));
 
 		//assert
 		Assert.Equal(2, resized.Width);

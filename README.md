@@ -137,13 +137,11 @@ await manager.SaveSrcSet("file.png", new ushort[] { 100, 200, 300 });
 
 ### File types
 
-`SrcSet` uses [ImageSharp](https://imagesharp.net) under the hood, and therefore should theoretically support all file types that ImageSharp supports by entering the filename as a parameter, however when entering a directory as a parameter, file types are limited to:
+`SrcSet` uses [SkiaSharp](https://mono.github.io/SkiaSharp/) under the hood, and therefore supports the file types that SkiaSharp fully supports:
 
-- jpg / jpeg / jfif
+- jpg
 - png
-- bmp / bm / dip
-- gif
-- tga / vda / icb / vst
+- webp
 
 ## Contributing
 
