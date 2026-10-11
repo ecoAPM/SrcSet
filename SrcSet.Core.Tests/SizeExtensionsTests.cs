@@ -1,4 +1,4 @@
-using SixLabors.ImageSharp;
+using SkiaSharp;
 using Xunit;
 
 namespace SrcSet.Core.Tests;
@@ -9,20 +9,20 @@ public sealed class SizeExtensionsTests
 	public void CanResizeImage()
 	{
 		//arrange
-		var size = new Size(6, 4);
+		var size = new SKSizeI(6, 4);
 
 		//act
 		var newSize = size.Resize(3);
 
 		//assert
-		Assert.Equal(new Size(3, 2), newSize);
+		Assert.Equal(new SKSizeI(3, 2), newSize);
 	}
 
 	[Fact]
 	public void CanCalculateLandscapeAspectRatio()
 	{
 		//arrange
-		var size = new Size(3, 2);
+		var size = new SKSizeI(3, 2);
 
 		//act
 		var aspectRatio = size.AspectRatio();
@@ -35,7 +35,7 @@ public sealed class SizeExtensionsTests
 	public void CanCalculatePortraitAspectRatio()
 	{
 		//arrange
-		var size = new Size(3, 4);
+		var size = new SKSizeI(3, 4);
 
 		//act
 		var aspectRatio = size.AspectRatio();

@@ -1,4 +1,4 @@
-using SixLabors.ImageSharp;
+using SkiaSharp;
 using SrcSet.Core;
 using Statiq.Web.Modules;
 using Statiq.Web.Pipelines;
@@ -13,19 +13,19 @@ public class ResponsiveImages : Pipeline
 	/// <param name="fileGlob">The pattern of asset files to resize</param>
 	/// <param name="widths">The list of widths (in pixels) to resize the images to</param>
 	/// <param name="loadImage">A custom image loader</param>
-	public ResponsiveImages(string? fileGlob = null, IEnumerable<ushort>? widths = null, Func<Stream, Task<Image>>? loadImage = null)
+	public ResponsiveImages(string? fileGlob = null, IEnumerable<ushort>? widths = null, Func<Stream, SKImage>? loadImage = null)
 	{
 		Dependencies.Add(nameof(Inputs));
 
-		ProcessModules = new ModuleList
-			{
-				new GetPipelineDocuments(ContentType.Asset),
-				new FilterSources(Config.FromValue(fileGlob)),
-				new FilterDocuments(Config.FromDocument(doc => doc.Source.IsImage())),
-				new CreateResponsiveImages(loadImage ?? (s => Image.LoadAsync(s)), widths ?? SrcSetManager.DefaultSizes)
-			};
+		ProcessModules =
+		[
+			new GetPipelineDocuments(ContentType.Asset),
+			new FilterSources(Config.FromValue(fileGlob)),
+			new FilterDocuments(Config.FromDocument(doc => doc.Source.IsImage())),
+			new CreateResponsiveImages(loadImage ?? (SKImage.FromEncodedData), widths ?? SrcSetManager.DefaultSizes)
+		];
 
-		OutputModules = new ModuleList { new WriteFiles() };
+		OutputModules = [new WriteFiles()];
 	}
 
 	/// <summary>
@@ -36,10 +36,10 @@ public class ResponsiveImages : Pipeline
 	/// <param name="defaultWidth">The default width, for the src attribute</param>
 	/// <param name="attributes">Additional attributes for the img tag</param>
 	/// <returns></returns>
-	public static string SrcSet(string baseImage, IReadOnlyList<ushort>? widths = null, ushort? defaultWidth = null, IDictionary<string, string>? attributes = null)
+	public static string SrcSet(string baseImage, ushort[]? widths = null, ushort? defaultWidth = null, IDictionary<string, string>? attributes = null)
 	{
-		widths ??= SrcSetManager.DefaultSizes.ToArray();
-		defaultWidth ??= widths[widths.Count / 3];
+		widths ??= [.. SrcSetManager.DefaultSizes];
+		defaultWidth ??= widths[widths.Length / 3];
 
 		var defaultFilename = new NormalizedPath(baseImage).GetDestination(defaultWidth.Value);
 		var srcset = widths.Select(w => SrcSetItem(baseImage, w));

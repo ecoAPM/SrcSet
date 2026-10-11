@@ -1,25 +1,15 @@
 using Microsoft.Extensions.Logging;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
+using SkiaSharp;
 using SrcSet.Core;
 
 namespace SrcSet.Statiq;
 
-public class CreateResponsiveImages : ParallelModule
+public class CreateResponsiveImages(Func<Stream, SKImage> loadImage, IEnumerable<ushort> widths) : ParallelModule
 {
-	private readonly Func<Stream, Task<Image>> _loadImage;
-	private readonly IEnumerable<ushort> _widths;
-
-	public CreateResponsiveImages(Func<Stream, Task<Image>> loadImage, IEnumerable<ushort> widths)
-	{
-		_loadImage = loadImage;
-		_widths = widths;
-	}
-
 	protected override async Task<IEnumerable<IDocument>> ExecuteInputAsync(IDocument input, IExecutionContext context)
 	{
-		var inputStream = input.GetContentStream();
-		var destinations = _widths.Select(w => input.Source.GetDestination(w)).ToList();
+		await using var inputStream = input.GetContentStream();
+		var destinations = widths.Select(w => input.Source.GetDestination(w)).ToList();
 		var cached = destinations.Select(d => context.FileSystem.GetOutputFile(d)).Where(f => f.Exists).ToList();
 		var alreadyDone = cached.Count == destinations.Count;
 		if (alreadyDone)
@@ -31,12 +21,12 @@ public class CreateResponsiveImages : ParallelModule
 			return await Task.WhenAll(docs);
 		}
 
-		var image = await _loadImage(inputStream);
-		var documents = _widths.Select(w => GetResizedDocument(input.Source, image, w, context));
+		var image = loadImage(inputStream);
+		var documents = widths.Select(w => GetResizedDocument(input.Source, image, w, context));
 		return await Task.WhenAll(documents);
 	}
 
-	private static async Task<IDocument> GetResizedDocument(NormalizedPath source, Image image, ushort width, IExecutionContext context)
+	private static async Task<IDocument> GetResizedDocument(NormalizedPath source, SKImage image, ushort width, IExecutionContext context)
 	{
 		var destination = source.GetDestination(width);
 		var cached = context.FileSystem.GetOutputFile(destination);
@@ -48,15 +38,15 @@ public class CreateResponsiveImages : ParallelModule
 			return await CachedDocument(source, destination, cached, context);
 		}
 
-		var encoder = image.DetectEncoder(destination.ToString());
-		var output = new MemoryStream();
+		using var output = new MemoryStream();
 
 		if (context.IsEnabled(LogLevel.Debug))
 			context.Log(LogLevel.Debug, "Resizing {Source} to {Destination}...", source, destination);
 
-		var newSize = image.Size.Resize(width);
+		var size = new SKSizeI(image.Width, image.Height);
+		var newSize = size.Resize(width);
 		using var resized = image.Resize(newSize);
-		await resized.SaveAsync(output, encoder);
+		SKBitmap.FromImage(image).Encode(output, Path.GetExtension(destination.ToString()).GetFormat(), 100);
 
 		var content = context.GetContentProvider(output);
 		return context.CreateDocument(source, destination, content);
@@ -64,7 +54,7 @@ public class CreateResponsiveImages : ParallelModule
 
 	private static async Task<IDocument> CachedDocument(NormalizedPath source, NormalizedPath destination, IFile cached, IExecutionContext context)
 	{
-		var stream = new MemoryStream();
+		using var stream = new MemoryStream();
 		await cached.OpenRead().CopyToAsync(stream);
 		var content = context.GetContentProvider(stream);
 		return context.CreateDocument(source, context.FileSystem.GetRelativeOutputPath(destination), content);

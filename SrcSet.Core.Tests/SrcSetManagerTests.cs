@@ -1,5 +1,4 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+using SkiaSharp;
 using Xunit;
 
 namespace SrcSet.Core.Tests;
@@ -20,11 +19,11 @@ public sealed class SrcSetManagerTests : IDisposable
 	public async Task CanResizeImage()
 	{
 		//arrange
-		Image image = new Image<Rgba32>(1, 1);
-		var manager = new SrcSetManager(_ => Task.FromResult(image), _ => { });
+		var image = SKImage.FromBitmap(new SKBitmap(1, 1));
+		var manager = new SrcSetManager(_ => image, _ => { });
 
 		//act
-		await manager.SaveSrcSet("test.png", new ushort[] { 3 });
+		await manager.SaveSrcSet("test.png", [3]);
 
 		//assert
 		Assert.True(File.Exists("test-0003.png"));

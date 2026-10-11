@@ -17,6 +17,6 @@ public static class Arguments
 			: SearchOption.TopDirectoryOnly;
 		return resizeDirectory
 			? Directory.EnumerateFiles(fileOrDirectoryArg, "*.*", searchOption).Where(f => SrcSetManager.ValidExtensions.Contains(Path.GetExtension(f).ToLower()))
-			: new[] { fileOrDirectoryArg };
+			: [fileOrDirectoryArg];
 	}
 }

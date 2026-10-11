@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<PackageId>SrcSet.Statiq</PackageId>
 		<Description>Automate creating sets of responsive images for your Statiq site</Description>
-		<Version>6.0.0</Version>
+		<Version>7.0.0</Version>
 		<Authors>ecoAPM LLC</Authors>
 		<Company>ecoAPM LLC</Company>
 		<Copyright>ecoAPM LLC</Copyright>
