@@ -21,8 +21,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.403" PrivateAssets="all"/>
-		<PackageReference Include="SkiaSharp" Version="4.153.1"/>
-		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.153.1"/>
+		<PackageReference Include="SkiaSharp" Version="4.154.0"/>
+		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="4.154.0"/>
 		<None Include="../README.md" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="."/>
 	</ItemGroup>
 </Project>
