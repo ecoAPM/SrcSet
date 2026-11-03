@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="SrcSet.Core.Tests/SrcSet.Core.Tests.csproj" />
+  <Project Path="SrcSet.Core/SrcSet.Core.csproj" />
+  <Project Path="SrcSet.Statiq.Tests/SrcSet.Statiq.Tests.csproj" />
+  <Project Path="SrcSet.Statiq/SrcSet.Statiq.csproj" />
+  <Project Path="SrcSet.Tests/SrcSet.Tests.csproj" />
+  <Project Path="SrcSet/SrcSet.csproj" />
+</Solution>
